@@ -42,9 +42,11 @@ Routine Care, kullanıcıların cilt sağlığını iyileştirmek, cilt sorunlar
 
 
 ---
-- **Sprint Notları**: User Story'ler product backlog'ların içine yazılmıştır. Product backlog item'lara tıklandığında hikayelerin detayları okunabilir.
+
 # Sprint 1
 
+- **Sprint Notları**: User Story'ler product backlog'ların içine yazılmıştır. Product backlog item'lara tıklandığında hikayelerin detayları okunabilir.
+  
 - **Sprint içinde tamamlanması tahmin edilen puan**: 50 Puan
 
 
