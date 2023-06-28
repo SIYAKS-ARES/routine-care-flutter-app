@@ -19,8 +19,7 @@ Flutter 59
 
 ## Product Backlog URL
 
-[Flutter Team 59 Miro Backlog Board] <img width="1133" alt="Ekran Resmi 2023-06-18 22 57 46" src="https://github.com/SIYAKS-ARES/Bootcamp_OUA_App/assets/120197015/5da757c7-20e8-4ac0-8b74-b4b5ecd2d451">
-
+[Flutter Team 59 Miro Backlog Board] 
 (https://miro.com/app/board/uXjVM9ufoVY=/#tpicker-content)
 
 ## Ürün Açıklaması
