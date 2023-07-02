@@ -108,7 +108,7 @@ Story'ler yapılacak işlere (task'lara) bölünmüştür. Miro Board'da gözük
 
 
 - **Ürün Durumu**: Ekran görüntüleri:
-
+![EkranGörüntüsü1](https://github.com/SIYAKS-ARES/Bootcamp_OUA_App/assets/120197015/760ca4f6-e361-4029-9bfa-ab8e7303368c)
 
 - **Sprint Review**: 
 -  Sprint hedeflerine ulaştı ve ürün planlandığı gibi geliştirildi. 
