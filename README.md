@@ -108,7 +108,7 @@ Story'ler yapılacak işlere (task'lara) bölünmüştür. Miro Board'da gözük
 
 <img width="1106" alt="Ekran Resmi 2023-07-02 12 56 11" src="https://github.com/SIYAKS-ARES/Bootcamp_OUA_App/assets/120197015/27b737eb-ee4e-4a5f-a023-2d2ee27b30d3">
 
-<img width="1106" alt="Burndown" src="https://github.com/SIYAKS-ARES/Bootcamp_OUA_App/assets/120197015/96ba6d62-ce26-452c-a2a1-bad223b2ecae">
+
 
 
 
