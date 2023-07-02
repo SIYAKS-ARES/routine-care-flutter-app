@@ -106,6 +106,7 @@ Story'ler yapılacak işlere (task'lara) bölünmüştür. Miro Board'da gözük
 
 - **Sprint board update**: Sprint board screenshotları: 
 
+<img width="1106" alt="Ekran Resmi 2023-07-02 12 56 11" src="https://github.com/SIYAKS-ARES/Bootcamp_OUA_App/assets/120197015/27b737eb-ee4e-4a5f-a023-2d2ee27b30d3">
 
 - **Ürün Durumu**: Ekran görüntüleri:
 ![EkranGörüntüsü1](https://github.com/SIYAKS-ARES/Bootcamp_OUA_App/assets/120197015/760ca4f6-e361-4029-9bfa-ab8e7303368c)
