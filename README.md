@@ -50,7 +50,7 @@ Routine Care, kullanıcıların cilt sağlığını iyileştirmek, cilt sorunlar
 - **Sprint içinde tamamlanması tahmin edilen puan**: 50 Puan
 
 
-- **Puan tamamlama mantığı**: Toplamda proje boyunca tamamlanması gereken 300 puanlık backlog bulunmaktadır. 3 sprint'e bölündüğünde ilk sprint'in takım arkadaşlarının dönem sonu yoğunluğundan ötürü 50 ile başlaması gerektiğine karar verildi. 2. sprint 150 puan, 3. sprint ise 100 puan olarak kararlaştırıldı.
+- **Puan tamamlama mantığı**: Toplamda proje boyunca tamamlanması gereken 300 puanlık backlog bulunmaktadır. 3 sprint'e bölündüğünde ilk sprint'in takım arkadaşlarının dönem sonu yoğunluğundan ötürü 50 ile başlaması gerektiğine karar verildi. 2. sprint 100 puan, 3. sprint ise 150 puan olarak kararlaştırıldı.
 
 
 - **Daily Scrum**: Daily Scrum toplantılarının zamansal sebeplerden ötürü Whatsapp üzerinden yapılmasına karar verilmiştir. Daily Scrum toplantısı örneği jpeg veya word olarak Readme'de tarafımızdan paylaşılmaktadır: [Sprint 1 Daily Scrum Chats](https://github.com/ebrusaki99/Bootcamp_OUA_App/blob/main/daily%20scrum%20f59.docx)
@@ -92,26 +92,52 @@ Sprint Review katılımcıları: Elif Sare Kirazlı, Ebru Saki,Oğuzhan Kalaycı
 
 # Sprint 2
 
-- **Sprint içinde tamamlanması tahmin edilen puan**: 
+- **Sprint Notları**: User Story'ler product backlog'ların içine yazılmıştır. Product backlog item'lara tıklandığında hikayelerin detayları okunabilir.
 
-- **Daily Scrum**: 
+- **Sprint içinde tamamlanması tahmin edilen puan**: 100 Puan
 
-- **Sprint board update**: 
+- **Puan tamamlama mantığı**: Toplamda proje boyunca tamamlanması gereken 300 puanlık backlog bulunmaktadır. İlk sprintte 50 puan tamamlandı ve 2. sprintte de 100 puanın tamamlanmasına karar verildi.
+
+- **Backlog düzeni ve Story seçimleri**: Backlog'umuz ilk yapılacak story'lere göre düzenlenmiştir. Sprint başına tahmin edilen puan sayısını geçmeyecek şekilde sıradan seçimler yapılmaktadır. Story başına çıkan tahmin puanı, toplam puanın yarısından az tutulmuştur. 
+
+Story'ler yapılacak işlere (task'lara) bölünmüştür. Miro Board'da gözüken kırmızı item'lar yapılacak işleri (task) gösterirken, mavi item'lar story'leri temsil etmektedir.
+
+- **Daily Scrum**: Daily Scrum toplantılarımız whatsapp ve zoom üzerinden gerçekleşmektedir.
+
+- **Sprint board update**: Sprint board screenshotları: 
 
 
 - **Ürün Durumu**: Ekran görüntüleri:
- 
+
+
 - **Sprint Review**: 
+-  Sprint hedeflerine ulaştı ve ürün planlandığı gibi geliştirildi. 
+-  *Alınan Kararlar:* 
+- Intro sayfalarının arka planındaki renk değiştirilecek.
+- Ürün sıralamaları uygun şekilde yeniden tasarlanacak.
+. 
+- *Sprint Review katılımcıları: Elif Sare Kirazlı, Ebru Saki,Oğuzhan Kalaycı, Hira Gülmez, Mehmet Said Hüseyinoğlu
+
+- **Sprint Retrospective**:
+3 şey üzerine konuştuk: Neler iyi gitti, hangi sorunlar ile karşılaştık ve neler geliştirilmeli?
+Neler iyi gitti?
+
+*Neler İyi Gitti?* 
+
+- Ekip üyelerinin kişisel hayatında var olan meşguliyetlere empati ve esneklikle yaklaşıldı. 
 
 
-- **Sprint Retrospective:**
+*Hangi Sorunlar İle Karşılaştık?*
+- Bayram dolayısıyla iletişimde kopukluklar oldu.
 
- 
 
+*Neler Geliştirilmeli?*
+- Son sprint geldiği ve her şeyin belirlenen tarihten daha erken tamamlanması için ekip daha sık iletişim kurma kararı aldı.   
 
----
+**Diğer Notlar**:
 
-## Product Backlog URL
+ Miro'da ve Miro'daki Drive linkinde  sprint boyu yaptığımız her aşamayı anlattık, dosyaladık.
+
 
 
 
