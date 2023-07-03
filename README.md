@@ -19,7 +19,7 @@ Flutter 59
 
 ## Product Backlog URL
 
-[Flutter Team 59 Miro Backlog Board] <img width="1133" alt="Ekran Resmi 2023-06-18 22 57 46" src="https://github.com/SIYAKS-ARES/Bootcamp_OUA_App/assets/120197015/5da757c7-20e8-4ac0-8b74-b4b5ecd2d451">
+[Flutter Team 59 Miro Backlog Board](https://miro.com/app/board/uXjVM64_Mqo=/)
 
 ## Ürün Açıklaması
 
@@ -45,13 +45,15 @@ Routine Care, kullanıcıların cilt sağlığını iyileştirmek, cilt sorunlar
 
 # Sprint 1
 
+- **Sprint Notları**: User Story'ler product backlog'ların içine yazılmıştır. Product backlog item'lara tıklandığında hikayelerin detayları okunabilir.
+  
 - **Sprint içinde tamamlanması tahmin edilen puan**: 50 Puan
 
 
-- **Puan tamamlama mantığı**: Toplamda proje boyunca tamamlanması gereken 300 puanlık backlog bulunmaktadır. 3 sprint'e bölündüğünde ilk sprint'in takım arkadaşlarının dönem sonu yoğunluğundan ötürü 50 ile başlaması gerektiğine karar verildi. 2. sprint 150 puan, 3. sprint ise 100 puan olarak kararlaştırıldı.
+- **Puan tamamlama mantığı**: Toplamda proje boyunca tamamlanması gereken 300 puanlık backlog bulunmaktadır. 3 sprint'e bölündüğünde ilk sprint'in takım arkadaşlarının dönem sonu yoğunluğundan ötürü 50 ile başlaması gerektiğine karar verildi. 2. sprint 100 puan, 3. sprint ise 150 puan olarak kararlaştırıldı.
 
 
-- **Daily Scrum**: Daily Scrum toplantılarının zamansal sebeplerden ötürü Whatsapp üzerinden yapılmasına karar verilmiştir. Daily Scrum toplantısı örneği jpeg veya word olarak Readme'de tarafımızdan paylaşılmaktadır: [Sprint 1 Daily Scrum Chats]
+- **Daily Scrum**: Daily Scrum toplantılarının zamansal sebeplerden ötürü Whatsapp üzerinden yapılmasına karar verilmiştir. Daily Scrum toplantısı örneği jpeg veya word olarak Readme'de tarafımızdan paylaşılmaktadır: [Sprint 1 Daily Scrum Chats](https://github.com/ebrusaki99/Bootcamp_OUA_App/blob/main/daily%20scrum%20f59.docx)
 
 - **Sprint board update**: Sprint board screenshotları: 
 ![Backlog 1] <img width="1136" alt="Ekran Resmi 2023-06-18 13 18 57" src="https://github.com/SIYAKS-ARES/Bootcamp_OUA_App/assets/120197015/4c0bba9e-4dfd-41c9-8553-15f9c321c046">(https://miro.com/app/board/uXjVM9ufoVY=/#tpicker-content)
@@ -90,26 +92,59 @@ Sprint Review katılımcıları: Elif Sare Kirazlı, Ebru Saki,Oğuzhan Kalaycı
 
 # Sprint 2
 
-- **Sprint içinde tamamlanması tahmin edilen puan**: 
+- **Sprint Notları**: User Story'ler product backlog'ların içine yazılmıştır. Product backlog item'lara tıklandığında hikayelerin detayları okunabilir.
 
-- **Daily Scrum**: 
+- **Sprint içinde tamamlanması tahmin edilen puan**: 100 Puan
 
-- **Sprint board update**: 
+- **Puan tamamlama mantığı**: Toplamda proje boyunca tamamlanması gereken 300 puanlık backlog bulunmaktadır. İlk sprintte 50 puan tamamlandı ve 2. sprintte de 100 puanın tamamlanmasına karar verildi.
 
+- **Backlog Düzeni**:  
+
+Story'ler yapılacak işlere (task'lara) bölünmüştür. Miro Board'da gözüken kırmızı item'lar yapılacak işleri (task) gösterirken, mavi item'lar story'leri temsil etmektedir.
+
+- **Daily Scrum**: Daily Scrum toplantılarımız whatsapp ve zoom üzerinden gerçekleşmektedir.
+
+- **Sprint board update**: Sprint board screenshotları: 
+
+<img width="1106" alt="Ekran Resmi 2023-07-02 12 56 11" src="https://github.com/SIYAKS-ARES/Bootcamp_OUA_App/assets/120197015/27b737eb-ee4e-4a5f-a023-2d2ee27b30d3">
+
+
+<img width="774" alt="Burndown" src="https://github.com/SIYAKS-ARES/Bootcamp_OUA_App/assets/120197015/0c2ec45a-6d0a-4180-8db2-54eb6601bc76">
 
 - **Ürün Durumu**: Ekran görüntüleri:
- 
+![EkranGörüntüsü1](https://github.com/SIYAKS-ARES/Bootcamp_OUA_App/assets/120197015/760ca4f6-e361-4029-9bfa-ab8e7303368c)
+![EkranGörüntüsü2](https://github.com/SIYAKS-ARES/Bootcamp_OUA_App/assets/120197015/3784b3bd-ce71-4d79-8955-5d2c1f16e2f6)
+
+
+
 - **Sprint Review**: 
+-  Sprint hedeflerine ulaştı ve ürün planlandığı gibi geliştirildi. 
+-  *Alınan Kararlar:* 
+- Intro sayfalarının arka planındaki renk değiştirilecek.
+- Ürün sıralamaları uygun şekilde yeniden tasarlanacak.
+. 
+- *Sprint Review katılımcıları: Elif Sare Kirazlı, Ebru Saki,Oğuzhan Kalaycı, Hira Gülmez, Mehmet Said Hüseyinoğlu
+
+- **Sprint Retrospective**:
+3 şey üzerine konuştuk: Neler iyi gitti, hangi sorunlar ile karşılaştık ve neler geliştirilmeli?
+Neler iyi gitti?
+
+*Neler İyi Gitti?* 
+
+- Ekip üyelerinin kişisel hayatında var olan meşguliyetlere empati ve esneklikle yaklaşıldı. 
 
 
-- **Sprint Retrospective:**
+*Hangi Sorunlar İle Karşılaştık?*
+- Bayram dolayısıyla iletişimde kopukluklar oldu.
 
- 
 
+*Neler Geliştirilmeli?*
+- Son sprint geldiği ve her şeyin belirlenen tarihten daha erken tamamlanması için ekip daha sık iletişim kurma kararı aldı.   
 
----
+**Diğer Notlar**:
 
-## Product Backlog URL
+ Miro'da ve Miro'daki Drive linkinde  sprint boyu yaptığımız her aşamayı anlattık, dosyaladık.
+
 
 
 
