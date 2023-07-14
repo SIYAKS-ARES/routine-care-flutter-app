@@ -102,9 +102,7 @@ Sprint Review katılımcıları: Elif Sare Kirazlı, Ebru Saki,Oğuzhan Kalaycı
 
 Story'ler yapılacak işlere (task'lara) bölünmüştür. Miro Board'da gözüken kırmızı item'lar yapılacak işleri (task) gösterirken, mavi item'lar story'leri temsil etmektedir.
 
-- **Daily Scrum**: Daily Scrum toplantılarımız whatsapp ve zoom üzerinden gerçekleşmektedir:[Sprint 2 Daily Scrum Chats](https://github.com/SIYAKS-ARES/Bootcamp_OUA_App/commit/353af736c771add395b924814e61f2783627fb1e)
-
-- (https://github.com/SIYAKS-ARES/Bootcamp_OUA_App/commit/353af736c771add395b924814e61f2783627fb1e)
+- **Daily Scrum**: Daily Scrum toplantılarımız whatsapp ve zoom üzerinden gerçekleşmektedir:[Sprint 2 Daily Scrum Chats](https://github.com/SIYAKS-ARES/Bootcamp_OUA_App/blob/main/daily%20scrum%20f59-2.docx)
 
 - **Sprint board update**: Sprint board screenshotları: 
 
