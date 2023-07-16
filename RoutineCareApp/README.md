@@ -161,7 +161,7 @@ Neler iyi gitti?
 - **Puan tamamlama mantığı**: Toplamda proje boyunca tamamlanması gereken 300 puanlık backlog bulunmaktadır. İlk sprintte 50 ve ikinci sprintte 100 olmak üzere toplamda 150 puan tamamlandı. 3. sprintte de kalan 150 puanın tamamlanmasına karar verildi.
 
 
-- **Daily Scrum**: Daily Scrum toplantılarının zamansal sebeplerden ötürü Whatsapp üzerinden yapılmasına karar verilmiştir. Daily Scrum toplantısı örneği word dosyası içine yazılıp ekran görüntüleri ile desteklenerek Readme'de tarafımızdan paylaşılmaktadır: [Sprint 3 Daily Scrum Chats](...)
+- **Daily Scrum**: Daily Scrum toplantılarının zamansal sebeplerden ötürü Whatsapp üzerinden yapılmasına karar verilmiştir. Daily Scrum toplantısı örneği word dosyası içine yazılıp ekran görüntüleri ile desteklenerek Readme'de tarafımızdan paylaşılmaktadır: [Sprint 3 Daily Scrum Chats](https://github.com/SIYAKS-ARES/Bootcamp_OUA_App/blob/main/dailyscrum/daily%20scrum%20f59-3.docx)
 
 
 - **Sprint board update**: 
