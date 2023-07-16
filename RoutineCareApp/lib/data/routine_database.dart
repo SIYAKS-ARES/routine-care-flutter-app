@@ -6,15 +6,16 @@ class RoutineDatabase {
   Map<DateTime, int> heatMapDataSet = {};
   void createDefaultData() {
     todaysRoutineList = [
-      ["Run", false],
-      ["Read", false],
+      ["Nemlendirici", false],
+      ["Gül Suyu Toniği", false],
+      ["Gözenek Sıkılaştırıcı", false],
+      ["Krımızı Peeling", false],
     ];
     _myBox.put("START_DATE", todaysDateFormatted());
   }
   void loadData() {
     if (_myBox.get(todaysDateFormatted()) == null) {
       todaysRoutineList = _myBox.get("CURRENT_Routine_LIST");
-      // set all Routine completed to false since it's a new day
       for (int i = 0; i < todaysRoutineList.length; i++) {
         todaysRoutineList[i][1] = false;
       }
