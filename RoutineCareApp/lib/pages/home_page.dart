@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
       builder: (context) {
         return MyAlertBox(
           controller: _newRoutineNameController,
-          hintText: 'Yeni Rutin Oluştur..',
+          hintText: 'Create A New Routine...',
           onSave: saveNewRoutine,
           onCancel: cancelDialogBox,
         );

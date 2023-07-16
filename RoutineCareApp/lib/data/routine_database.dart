@@ -6,10 +6,11 @@ class RoutineDatabase {
   Map<DateTime, int> heatMapDataSet = {};
   void createDefaultData() {
     todaysRoutineList = [
-      ["Nemlendirici", false],
-      ["Gül Suyu Toniği", false],
-      ["Gözenek Sıkılaştırıcı", false],
-      ["Krımızı Peeling", false],
+      ["Moisturizer", false],
+      ["Rose Water Tonic", false],
+      ["Pore Firming", false],
+      ["Red Peeling", false],
+      ["Drink 3 Gallon Water", false],
     ];
     _myBox.put("START_DATE", todaysDateFormatted());
   }
