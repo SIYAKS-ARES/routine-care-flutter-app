@@ -60,6 +60,7 @@ class RoutineDatabase {
         DateTime(year, month, day): (10 * strengthAsPercent).toInt(),
       };
       heatMapDataSet.addEntries(percentForEachDay.entries);
+      // ignore: avoid_print
       print(heatMapDataSet);
     }
   }

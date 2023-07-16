@@ -39,6 +39,7 @@ class MyAlertBox extends StatelessWidget {
         ),
         MaterialButton(
           onPressed: onCancel,
+          // ignore: sort_child_properties_last
           child: const Text(
             "Cancel",
             style: TextStyle(color: Colors.white),
