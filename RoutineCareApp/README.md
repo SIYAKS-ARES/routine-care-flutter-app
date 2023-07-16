@@ -102,7 +102,7 @@ Sprint Review katılımcıları: Elif Sare Kirazlı, Ebru Saki,Oğuzhan Kalaycı
 
 Story'ler yapılacak işlere (task'lara) bölünmüştür. Miro Board'da gözüken kırmızı item'lar yapılacak işleri (task) gösterirken, mavi item'lar story'leri temsil etmektedir.
 
-- **Daily Scrum**: Daily Scrum toplantılarımız whatsapp ve zoom üzerinden gerçekleşmektedir.
+- **Daily Scrum**: Daily Scrum toplantılarımız whatsapp ve zoom üzerinden gerçekleşmektedir:[Sprint 2 Daily Scrum Chats](https://github.com/SIYAKS-ARES/Bootcamp_OUA_App/blob/main/daily%20scrum%20f59-2.docx)
 
 - **Sprint board update**: Sprint board screenshotları: 
 
@@ -152,10 +152,17 @@ Neler iyi gitti?
 
 # Sprint 3
 
-- **Sprint içinde tamamlanması tahmin edilen puan**: 
+- **Sprint Notları**: User Story'ler product backlog'ların içine yazılmıştır. Product backlog item'lara tıklandığında hikayelerin detayları okunabilir.
 
 
-- **Daily Scrum**: 
+- **Sprint içinde tamamlanması tahmin edilen puan**: 150 puan
+
+
+- **Puan tamamlama mantığı**: Toplamda proje boyunca tamamlanması gereken 300 puanlık backlog bulunmaktadır. İlk sprintte 50 ve ikinci sprintte 100 olmak üzere toplamda 150 puan tamamlandı. 3. sprintte de kalan 150 puanın tamamlanmasına karar verildi.
+
+
+- **Daily Scrum**: Daily Scrum toplantılarının zamansal sebeplerden ötürü Whatsapp üzerinden yapılmasına karar verilmiştir. Daily Scrum toplantısı örneği word dosyası içine yazılıp ekran görüntüleri ile desteklenerek Readme'de tarafımızdan paylaşılmaktadır: [Sprint 3 Daily Scrum Chats](...)
+
 
 - **Sprint board update**: 
 
