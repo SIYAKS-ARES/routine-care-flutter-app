@@ -152,10 +152,14 @@ Neler iyi gitti?
 
 # Sprint 3
 
-- **Sprint içinde tamamlanması tahmin edilen puan**: 
+- **Sprint Notları**: User Story'ler product backlog'ların içine yazılmıştır. Product backlog item'lara tıklandığında hikayelerin detayları okunabilir.
 
 
-- **Daily Scrum**: 
+- **Sprint içinde tamamlanması tahmin edilen puan**: 150 puan
+
+
+- **Daily Scrum**: Daily Scrum toplantısı örneği word dosyası içine yazılıp ekran görüntüleri ile desteklenerek Readme'de tarafımızdan paylaşılmaktadır: [Sprint 3 Daily Scrum Chats](...)
+
 
 - **Sprint board update**: 
 
