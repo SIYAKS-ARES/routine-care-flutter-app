@@ -123,7 +123,7 @@ Story'ler yapılacak işlere (task'lara) bölünmüştür. Miro Board'da gözük
 - Intro sayfalarının arka planındaki renk değiştirilecek.
 - Ürün sıralamaları uygun şekilde yeniden tasarlanacak.
 . 
-- *Sprint Review katılımcıları: Elif Sare Kirazlı, Ebru Saki,Oğuzhan Kalaycı, Hira Gülmez, Mehmet Said Hüseyinoğlu
+- *Sprint Review katılımcıları: Elif Sare Kirazlı, Ebru Saki,Oğuzhan Kalaycı, Mehmet Said Hüseyinoğlu
 
 - **Sprint Retrospective**:
 3 şey üzerine konuştuk: Neler iyi gitti, hangi sorunlar ile karşılaştık ve neler geliştirilmeli?
@@ -161,7 +161,7 @@ Neler iyi gitti?
 - **Puan tamamlama mantığı**: Toplamda proje boyunca tamamlanması gereken 300 puanlık backlog bulunmaktadır. İlk sprintte 50 ve ikinci sprintte 100 olmak üzere toplamda 150 puan tamamlandı. 3. sprintte de kalan 150 puanın tamamlanmasına karar verildi.
 
 
-- **Daily Scrum**: Daily Scrum toplantılarının zamansal sebeplerden ötürü Whatsapp üzerinden yapılmasına karar verilmiştir. Daily Scrum toplantısı örneği word dosyası içine yazılıp ekran görüntüleri ile desteklenerek Readme'de tarafımızdan paylaşılmaktadır: [Sprint 3 Daily Scrum Chats](https://github.com/SIYAKS-ARES/Bootcamp_OUA_App/blob/main/dailyscrum/daily%20scrum%20f59-3.docx)
+- **Daily Scrum**: Daily Scrum toplantıları Whatsapp ve zoom üzerinden yapılmasına karar verilmiştir. Daily Scrum toplantısı örneği word dosyası içine yazılıp ekran görüntüleri ile desteklenerek Readme'de tarafımızdan paylaşılmaktadır: [Sprint 3 Daily Scrum Chats](https://github.com/SIYAKS-ARES/Bootcamp_OUA_App/blob/main/dailyscrum/daily%20scrum%20f59-3.docx)
 
 
 - **Sprint board update**: 
@@ -171,11 +171,23 @@ Neler iyi gitti?
 
 
 - **Sprint Review**: 
-
+-  Sprint hedeflerine ulaştı ve ürün planlandığı gibi geliştirildi. 
+-  Ürün tamamlandı.
+-  *Alınan Kararlar:
+  
+- Mehmet 1 dakikalık ürün tanıtım videosunu oluşturacak.
+- *Sprint Review katılımcıları:Elif Sare Kirazlı, Ebru Saki,Oğuzhan Kalaycı, Mehmet Said Hüseyinoğlu
 
 - **Sprint Retrospective:**
+Önce 2 şey üzerine konuştuk: Neler iyi gitti ve hangi sorunlar ile karşılaştık. Ardından tüm üyelerden proje hakkında düşüncelerini dinledik.
 
-  - 
+*Neler İyi Gitti?* 
+- Tüm görevler tamamlandı.
+- Ürün eksiksizce tamamlandı.
+- Takım 100% memnun ve herkes ürünü eksiksizce çıkarttığı için gururlu. 
 
+*Hangi Sorunlar İle Karşılaştık?*
+- Projenin en başında ürün bilgileri ve incelemeleri ve hava durumu ve iklim etkisi takım arkadaşımız Hira'nın sürece dahil olmaması sebebiyle uygulama içerisine yerleştirilemedi. Bu sebeple bu özellikler projeden çıkartıldı.
+- Tasarımda renkler konusunda değişiklik yapıldı. Revize ederek durumu hallettik.
 
 ---
