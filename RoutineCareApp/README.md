@@ -112,8 +112,7 @@ Story'ler yapılacak işlere (task'lara) bölünmüştür. Miro Board'da gözük
 <img width="774" alt="Burndown" src="https://github.com/SIYAKS-ARES/Bootcamp_OUA_App/assets/120197015/0c2ec45a-6d0a-4180-8db2-54eb6601bc76">
 
 - **Ürün Durumu**: Ekran görüntüleri:
-![EkranGörüntüsü1]
-![EkranGörüntüsü2](https://github.com/SIYAKS-ARES/Bootcamp_OUA_App/assets/120197015/3784b3bd-ce71-4d79-8955-5d2c1f16e2f6)
+![EkranGörüntüsü1](https://github.com/SIYAKS-ARES/Bootcamp_OUA_App/assets/120197015/760ca4f6-e361-4029-9bfa-ab8e7303368c)![EkranGörüntüsü2](https://github.com/SIYAKS-ARES/Bootcamp_OUA_App/assets/120197015/3784b3bd-ce71-4d79-8955-5d2c1f16e2f6)
 
 
 
@@ -169,8 +168,8 @@ Neler iyi gitti?
 <img width="769" alt="Ekran Resmi 2023-07-17 08 42 06" src="https://github.com/SIYAKS-ARES/Bootcamp_OUA_App/assets/120197015/076133b9-c58c-4ec3-9180-575d5d009d6e">
 <img width="735" alt="Ekran Resmi 2023-07-17 09 18 21" src="https://github.com/SIYAKS-ARES/Bootcamp_OUA_App/assets/120197015/6929aadc-44d3-4537-a82f-b47238e93717">
 
-- **Ürün Durumu**: 
-![EkranGörüntüsü1](https://github.com/SIYAKS-ARES/Bootcamp_OUA_App/assets/120197015/760ca4f6-e361-4029-9bfa-ab8e7303368c)
+- **Ürün Durumu**:
+![Ekran Görüntüsü 1](https://github.com/SIYAKS-ARES/Bootcamp_OUA_App/assets/120197015/f0049406-e43d-4f38-b2f4-8b1f310f620c)
 ![EkranGörüntüsü2](https://github.com/SIYAKS-ARES/Bootcamp_OUA_App/assets/120197015/3784b3bd-ce71-4d79-8955-5d2c1f16e2f6)
 
 - **Sprint Review**: 
