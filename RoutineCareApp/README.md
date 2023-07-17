@@ -166,6 +166,7 @@ Neler iyi gitti?
 
 - **Sprint board update**: 
 
+<img width="769" alt="Ekran Resmi 2023-07-17 08 42 06" src="https://github.com/SIYAKS-ARES/Bootcamp_OUA_App/assets/120197015/076133b9-c58c-4ec3-9180-575d5d009d6e">
 
 - **Ürün Durumu**: 
 
