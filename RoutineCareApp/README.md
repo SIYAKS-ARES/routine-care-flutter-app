@@ -112,7 +112,7 @@ Story'ler yapılacak işlere (task'lara) bölünmüştür. Miro Board'da gözük
 <img width="774" alt="Burndown" src="https://github.com/SIYAKS-ARES/Bootcamp_OUA_App/assets/120197015/0c2ec45a-6d0a-4180-8db2-54eb6601bc76">
 
 - **Ürün Durumu**: Ekran görüntüleri:
-![EkranGörüntüsü1](https://github.com/SIYAKS-ARES/Bootcamp_OUA_App/assets/120197015/760ca4f6-e361-4029-9bfa-ab8e7303368c)
+![EkranGörüntüsü1]
 ![EkranGörüntüsü2](https://github.com/SIYAKS-ARES/Bootcamp_OUA_App/assets/120197015/3784b3bd-ce71-4d79-8955-5d2c1f16e2f6)
 
 
