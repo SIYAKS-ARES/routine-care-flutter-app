@@ -40,7 +40,6 @@ Routine Care, kullanıcıların cilt sağlığını iyileştirmek, cilt sorunlar
 - Anti-Aging ve Cilt Sağlığı Meraklıları: Yaşlanma belirtilerini geciktirmek ve genel olarak cilt sağlığını korumak isteyen bireyler, anti-aging cilt bakımına odaklanan bir uygulamadan fayda sağlayabilir. Kırışıklık önleyici ürünler, güneş koruması, antioksidanlar ve kolajen destekleyici içerikler gibi konulara odaklanılabilir.
 - Erkekler: Cilt bakımı artık sadece kadınlar için değil, erkekler için de önemli bir konu haline gelmiştir. Erkekler için tasarlanmış cilt bakım ürünleri, tıraş sonrası bakım ipuçları ve erkeklere özel cilt sorunlarına yönelik içerikler sunulabilir.
 
-
 ---
 
 # Sprint 1
@@ -71,7 +70,6 @@ Sprint Review katılımcıları: Elif Sare Kirazlı, Ebru Saki,Oğuzhan Kalaycı
 - **Sprint Retrospective:**
   - Takım üyelerinin gelecek sprintlerde aktif olması gerektiğine vurgu yapılmıştır.Hangi sorunlar ile karşılaştık ve neler geliştirilmeli konusunda konuştuk.
 
-
 *Hangi Sorunlar İle Karşılaştık?*
 - Takım arkadaşalrının yıl sonu sınavları ve iş temposundan dolayı çok fazla bir araya gelemedik.
 
@@ -80,7 +78,6 @@ Sprint Review katılımcıları: Elif Sare Kirazlı, Ebru Saki,Oğuzhan Kalaycı
 - Sprint backlogları tarihsel anlamda belli hedefler içinde ilerlemeli.
 - Backlog’lar Sprintin son Pazar gününe kalmamalı, daha erken bitirilmeli.
 - Herkes yaptığı işi yaparken daha sık feedback vermeli. 
-
 
 ---
 
@@ -115,7 +112,6 @@ Story'ler yapılacak işlere (task'lara) bölünmüştür. Miro Board'da gözük
 ![EkranGörüntüsü1](https://github.com/SIYAKS-ARES/Bootcamp_OUA_App/assets/120197015/760ca4f6-e361-4029-9bfa-ab8e7303368c)![EkranGörüntüsü2](https://github.com/SIYAKS-ARES/Bootcamp_OUA_App/assets/120197015/3784b3bd-ce71-4d79-8955-5d2c1f16e2f6)
 
 
-
 - **Sprint Review**: 
 -  Sprint hedeflerine ulaştı ve ürün planlandığı gibi geliştirildi. 
 -  *Alınan Kararlar:* 
@@ -143,9 +139,6 @@ Neler iyi gitti?
 **Diğer Notlar**:
 
  Miro'da ve Miro'daki Drive linkinde  sprint boyu yaptığımız her aşamayı anlattık, dosyaladık.
-
-
-
 
 ---
 
