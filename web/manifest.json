@@ -1,6 +1,6 @@
 {
-    "name": "RoutineCare",
-    "short_name": "RoutineCare",
+    "name": "routinecareappflutter",
+    "short_name": "routinecareappflutter",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

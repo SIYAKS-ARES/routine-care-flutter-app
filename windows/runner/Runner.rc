@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "RoutineCare" "\0"
+            VALUE "FileDescription", "routinecareappflutter" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "RoutineCare" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2022 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "RoutineCare.exe" "\0"
-            VALUE "ProductName", "RoutineCare" "\0"
+            VALUE "InternalName", "routinecareappflutter" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2024 com.example. All rights reserved." "\0"
+            VALUE "OriginalFilename", "routinecareappflutter.exe" "\0"
+            VALUE "ProductName", "routinecareappflutter" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END
