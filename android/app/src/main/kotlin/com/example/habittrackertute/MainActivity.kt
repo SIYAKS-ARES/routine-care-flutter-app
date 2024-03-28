@@ -1,4 +1,4 @@
-package com.example.RoutineCare
+package com.example.routine_care
 
 import io.flutter.embedding.android.FlutterActivity
 

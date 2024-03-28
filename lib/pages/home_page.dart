@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:RoutineCare/components/routine_tile.dart';
-import 'package:RoutineCare/components/month_summary.dart';
-import 'package:RoutineCare/components/my_fab.dart';
-import 'package:RoutineCare/components/my_alert_box.dart';
-import 'package:RoutineCare/data/routine_database.dart';
+import 'package:routine_care/components/routine_tile.dart';
+import 'package:routine_care/components/month_summary.dart';
+import 'package:routine_care/components/my_fab.dart';
+import 'package:routine_care/components/my_alert_box.dart';
+import 'package:routine_care/data/routine_database.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
