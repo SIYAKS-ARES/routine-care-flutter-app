@@ -1,12 +1,12 @@
 # Bootcamp_OUA_App
 Bootcamp - Oyun ve Uygulama Akademisi - Uygulama Projesi
-# **Takım İsmi**
+# **Takım Numarası**
 
 Flutter 59
 
 # Ürün İle İlgili Bilgiler
 
-## Takım Elemanları
+## Takım Üyeleri
 - Ebru Saki: Scrum Master 
 - Elif Sare Kirazlı: Product Owner
 - Mehmet Said Hüseyinoğlu: Developer
