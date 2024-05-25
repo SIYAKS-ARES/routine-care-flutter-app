@@ -5,11 +5,13 @@ import 'package:routine_care/components/my_fab.dart';
 import 'package:routine_care/components/my_alert_box.dart';
 import 'package:routine_care/data/routine_database.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
   @override
   State<HomePage> createState() => _HomePageState();
 }
+
 class _HomePageState extends State<HomePage> {
   RoutineDatabase db = RoutineDatabase();
   final _myBox = Hive.box("Routine_Database");
@@ -17,19 +19,20 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     if (_myBox.get("CURRENT_Routine_LIST") == null) {
       db.createDefaultData();
-    }
-    else {
+    } else {
       db.loadData();
     }
     db.updateDatabase();
     super.initState();
   }
+
   void checkBoxTapped(bool? value, int index) {
     setState(() {
       db.todaysRoutineList[index][1] = value;
     });
     db.updateDatabase();
   }
+
   final _newRoutineNameController = TextEditingController();
   void createNewRoutine() {
     showDialog(
@@ -44,6 +47,7 @@ class _HomePageState extends State<HomePage> {
       },
     );
   }
+
   void saveNewRoutine() {
     setState(() {
       db.todaysRoutineList.add([_newRoutineNameController.text, false]);
@@ -52,10 +56,12 @@ class _HomePageState extends State<HomePage> {
     Navigator.of(context).pop();
     db.updateDatabase();
   }
+
   void cancelDialogBox() {
     _newRoutineNameController.clear();
     Navigator.of(context).pop();
   }
+
   void openRoutineSettings(int index) {
     showDialog(
       context: context,
@@ -69,6 +75,7 @@ class _HomePageState extends State<HomePage> {
       },
     );
   }
+
   void saveExistingRoutine(int index) {
     setState(() {
       db.todaysRoutineList[index][0] = _newRoutineNameController.text;
@@ -77,16 +84,19 @@ class _HomePageState extends State<HomePage> {
     Navigator.pop(context);
     db.updateDatabase();
   }
+
   void deleteRoutine(int index) {
     setState(() {
       db.todaysRoutineList.removeAt(index);
     });
     db.updateDatabase();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.pink[300],
+      backgroundColor: Colors.pink[
+          300], // const Color.fromARGB(255, 249, 92, 1) Orange for Retro theme
       floatingActionButton: MyFloatingActionButton(onPressed: createNewRoutine),
       body: ListView(
         children: [
