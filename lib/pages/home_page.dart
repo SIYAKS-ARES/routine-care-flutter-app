@@ -96,7 +96,12 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.pink[
-          300], // const Color.fromARGB(255, 249, 92, 1) Orange for Retro theme
+          200], // const Color.fromARGB(255, 249, 92, 1) Orange for Retro theme
+      appBar: AppBar(
+        backgroundColor: Colors.pink[300],
+        title: const Text('Daily Routine Care'),
+        elevation: 0,
+      ),
       floatingActionButton: MyFloatingActionButton(onPressed: createNewRoutine),
       body: ListView(
         children: [
