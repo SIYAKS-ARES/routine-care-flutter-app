@@ -1,5 +1,6 @@
 {
     "java.configuration.updateBuildConfiguration": "interactive",
     "cmake.configureOnOpen": true,
-    "cmake.sourceDirectory": "/Users/siyaksares/Developer/GitHub/RoutineCareFlutterApp/linux/flutter"
+    "cmake.sourceDirectory": "/Users/siyaksares/Developer/GitHub/RoutineCareFlutterApp/linux/flutter",
+    "cmake.ignoreCMakeListsMissing": true
 }
