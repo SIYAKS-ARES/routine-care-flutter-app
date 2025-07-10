@@ -7,7 +7,7 @@ Flutter 59
 # Ürün İle İlgili Bilgiler
 
 ## Takım Üyeleri
-- Ebru Saki: Scrum Master 
+- Ebru Saki: Scrum Master
 - Elif Sare Kirazlı: Product Owner
 - Mehmet Said Hüseyinoğlu: Developer
 - Mevlüt Oğuzhan Kalaycı: Developer
@@ -45,7 +45,7 @@ Routine Care, kullanıcıların cilt sağlığını iyileştirmek, cilt sorunlar
 # Sprint 1
 
 - **Sprint Notları**: User Story'ler product backlog'ların içine yazılmıştır. Product backlog item'lara tıklandığında hikayelerin detayları okunabilir.
-  
+
 - **Sprint içinde tamamlanması tahmin edilen puan**: 50 Puan
 
 
@@ -54,15 +54,15 @@ Routine Care, kullanıcıların cilt sağlığını iyileştirmek, cilt sorunlar
 
 - **Daily Scrum**: Daily Scrum toplantılarının zamansal sebeplerden ötürü Whatsapp üzerinden yapılmasına karar verilmiştir. Daily Scrum toplantısı örneği jpeg veya word olarak Readme'de tarafımızdan paylaşılmaktadır: [Sprint 1 Daily Scrum Chats](https://github.com/ebrusaki99/Bootcamp_OUA_App/blob/main/daily%20scrum%20f59.docx)
 
-- **Sprint board update**: Sprint board screenshotları: 
+- **Sprint board update**: Sprint board screenshotları:
 ![Backlog 1] <img width="1136" alt="Ekran Resmi 2023-06-18 13 18 57" src="https://github.com/SIYAKS-ARES/Bootcamp_OUA_App/assets/120197015/4c0bba9e-4dfd-41c9-8553-15f9c321c046">(https://miro.com/app/board/uXjVM9ufoVY=/#tpicker-content)
 
 - **Ürün Durumu**:
    Ekran görüntüleri:
    ![ekran resmi 1](https://github.com/SIYAKS-ARES/Bootcamp_OUA_App/assets/120197015/d5539766-44fc-4623-8e49-b74c43b99281)
    ![Ekran resmi 2](https://github.com/SIYAKS-ARES/Bootcamp_OUA_App/assets/120197015/7ffa2b5e-f670-45ae-84da-91d695aed70d)
-  
-- **Sprint Review**: 
+
+- **Sprint Review**:
 Alınan kararlar: Sprint hedeflerine takım arkadaşlarımızın iş yoğunluğu ve sınav haftaları dolayısıyla tam olarak ulaşılamadı.
 
 Sprint Review katılımcıları: Elif Sare Kirazlı, Ebru Saki,Oğuzhan Kalaycı, Hira Gülmez, Mehmet Said Hüseyinoğlu
@@ -77,7 +77,7 @@ Sprint Review katılımcıları: Elif Sare Kirazlı, Ebru Saki,Oğuzhan Kalaycı
 - Daily Scrum için günlük olarak yazılmalı. Scrum master akşam hatırlatma yaptıktan sonra tekrar yazmak durumunda kalmasın.
 - Sprint backlogları tarihsel anlamda belli hedefler içinde ilerlemeli.
 - Backlog’lar Sprintin son Pazar gününe kalmamalı, daha erken bitirilmeli.
-- Herkes yaptığı işi yaparken daha sık feedback vermeli. 
+- Herkes yaptığı işi yaparken daha sık feedback vermeli.
 
 ---
 
@@ -95,13 +95,13 @@ Sprint Review katılımcıları: Elif Sare Kirazlı, Ebru Saki,Oğuzhan Kalaycı
 
 - **Puan tamamlama mantığı**: Toplamda proje boyunca tamamlanması gereken 300 puanlık backlog bulunmaktadır. İlk sprintte 50 puan tamamlandı ve 2. sprintte de 100 puanın tamamlanmasına karar verildi.
 
-- **Backlog Düzeni**:  
+- **Backlog Düzeni**:
 
 Story'ler yapılacak işlere (task'lara) bölünmüştür. Miro Board'da gözüken kırmızı item'lar yapılacak işleri (task) gösterirken, mavi item'lar story'leri temsil etmektedir.
 
 - **Daily Scrum**: Daily Scrum toplantılarımız whatsapp ve zoom üzerinden gerçekleşmektedir:[Sprint 2 Daily Scrum Chats](https://github.com/SIYAKS-ARES/Bootcamp_OUA_App/blob/main/daily%20scrum%20f59-2.docx)
 
-- **Sprint board update**: Sprint board screenshotları: 
+- **Sprint board update**: Sprint board screenshotları:
 
 <img width="1106" alt="Ekran Resmi 2023-07-02 12 56 11" src="https://github.com/SIYAKS-ARES/Bootcamp_OUA_App/assets/120197015/27b737eb-ee4e-4a5f-a023-2d2ee27b30d3">
 
@@ -112,21 +112,21 @@ Story'ler yapılacak işlere (task'lara) bölünmüştür. Miro Board'da gözük
 ![EkranGörüntüsü1](https://github.com/SIYAKS-ARES/Bootcamp_OUA_App/assets/120197015/760ca4f6-e361-4029-9bfa-ab8e7303368c)![EkranGörüntüsü2](https://github.com/SIYAKS-ARES/Bootcamp_OUA_App/assets/120197015/3784b3bd-ce71-4d79-8955-5d2c1f16e2f6)
 
 
-- **Sprint Review**: 
--  Sprint hedeflerine ulaştı ve ürün planlandığı gibi geliştirildi. 
--  *Alınan Kararlar:* 
+- **Sprint Review**:
+-  Sprint hedeflerine ulaştı ve ürün planlandığı gibi geliştirildi.
+-  *Alınan Kararlar:*
 - Intro sayfalarının arka planındaki renk değiştirilecek.
 - Ürün sıralamaları uygun şekilde yeniden tasarlanacak.
-. 
+.
 - *Sprint Review katılımcıları: Elif Sare Kirazlı, Ebru Saki,Oğuzhan Kalaycı, Mehmet Said Hüseyinoğlu
 
 - **Sprint Retrospective**:
 3 şey üzerine konuştuk: Neler iyi gitti, hangi sorunlar ile karşılaştık ve neler geliştirilmeli?
 Neler iyi gitti?
 
-*Neler İyi Gitti?* 
+*Neler İyi Gitti?*
 
-- Ekip üyelerinin kişisel hayatında var olan meşguliyetlere empati ve esneklikle yaklaşıldı. 
+- Ekip üyelerinin kişisel hayatında var olan meşguliyetlere empati ve esneklikle yaklaşıldı.
 
 
 *Hangi Sorunlar İle Karşılaştık?*
@@ -134,7 +134,7 @@ Neler iyi gitti?
 
 
 *Neler Geliştirilmeli?*
-- Son sprint geldiği ve her şeyin belirlenen tarihten daha erken tamamlanması için ekip daha sık iletişim kurma kararı aldı.   
+- Son sprint geldiği ve her şeyin belirlenen tarihten daha erken tamamlanması için ekip daha sık iletişim kurma kararı aldı.
 
 **Diğer Notlar**:
 
@@ -156,7 +156,7 @@ Neler iyi gitti?
 - **Daily Scrum**: Daily Scrum toplantıları Whatsapp ve zoom üzerinden yapılmasına karar verilmiştir. Daily Scrum toplantısı örneği word dosyası içine yazılıp ekran görüntüleri ile desteklenerek Readme'de tarafımızdan paylaşılmaktadır: [Sprint 3 Daily Scrum Chats](https://github.com/SIYAKS-ARES/Bootcamp_OUA_App/blob/main/dailyscrum/daily%20scrum%20f59-3.docx)
 
 
-- **Sprint board update**: 
+- **Sprint board update**:
 
 <img width="698" alt="Ekran Resmi 2023-07-17 09 17 50" src="https://github.com/SIYAKS-ARES/Bootcamp_OUA_App/assets/120197015/2c865cc0-4593-4a41-b63a-0c2b4eb87653">
 <img width="735" alt="Ekran Resmi 2023-07-17 09 18 21" src="https://github.com/SIYAKS-ARES/Bootcamp_OUA_App/assets/120197015/6929aadc-44d3-4537-a82f-b47238e93717">
@@ -165,21 +165,20 @@ Neler iyi gitti?
 ![Ekran Görüntüsü 1](https://github.com/SIYAKS-ARES/Bootcamp_OUA_App/assets/120197015/f0049406-e43d-4f38-b2f4-8b1f310f620c)
 ![EkranGörüntüsü2](https://github.com/SIYAKS-ARES/Bootcamp_OUA_App/assets/120197015/3784b3bd-ce71-4d79-8955-5d2c1f16e2f6)
 
-- **Sprint Review**: 
--  Sprint hedeflerine ulaştı ve ürün planlandığı gibi geliştirildi. 
+- **Sprint Review**:
+-  Sprint hedeflerine ulaştı ve ürün planlandığı gibi geliştirildi.
 -  Ürün tamamlandı.
 -  *Alınan Kararlar:
-  
 - Mehmet 1 dakikalık ürün tanıtım videosunu oluşturacak.
 - *Sprint Review katılımcıları:Elif Sare Kirazlı, Ebru Saki,Oğuzhan Kalaycı, Mehmet Said Hüseyinoğlu
 
 - **Sprint Retrospective:**
 Önce 2 şey üzerine konuştuk: Neler iyi gitti ve hangi sorunlar ile karşılaştık. Ardından tüm üyelerden proje hakkında düşüncelerini dinledik.
 
-*Neler İyi Gitti?* 
+*Neler İyi Gitti?*
 - Tüm görevler tamamlandı.
 - Ürün eksiksizce tamamlandı.
-- Takım 100% memnun ve herkes ürünü eksiksizce çıkarttığı için gururlu. 
+- Takım 100% memnun ve herkes ürünü eksiksizce çıkarttığı için gururlu.
 
 *Hangi Sorunlar İle Karşılaştık?*
 - Projenin en başında ürün bilgileri ve incelemeleri ve hava durumu ve iklim etkisi takım arkadaşımız Hira'nın sürece dahil olmaması sebebiyle uygulama içerisine yerleştirilemedi. Bu sebeple bu özellikler projeden çıkartıldı.
