@@ -7,9 +7,9 @@ Flutter 59
 # Ürün İle İlgili Bilgiler
 
 ## Takım Üyeleri
-- Ebru Saki: Scrum Master
+- Mehmet Said Hüseyinoğlu: Scrum Master
 - Elif Sare Kirazlı: Product Owner
-- Mehmet Said Hüseyinoğlu: Developer
+- Ebru Saki: Developer
 - Mevlüt Oğuzhan Kalaycı: Developer
 - Hira Gülmez: Aktif değil
 
