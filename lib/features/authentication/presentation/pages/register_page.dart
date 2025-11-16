@@ -35,9 +35,9 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
     if (_formKey.currentState!.validate()) {
       await ref
           .read(authNotifierProvider.notifier)
-          .registerWithEmailAndPassword(
-            email: _emailController.text.trim(),
-            password: _passwordController.text,
+          .createUserWithEmailAndPassword(
+            _emailController.text.trim(),
+            _passwordController.text,
             displayName: _nameController.text.trim(),
           );
     }

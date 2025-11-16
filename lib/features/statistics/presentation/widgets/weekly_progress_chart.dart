@@ -82,7 +82,7 @@ class WeeklyProgressChart extends StatelessWidget {
                           if (index >= 0 && index < data.length) {
                             final week = data[index];
                             return SideTitleWidget(
-                              axisSide: meta.axisSide,
+                              meta: meta,
                               child: Text(
                                 DateFormat('MMM d').format(week.weekStart),
                                 style: theme.textTheme.bodySmall?.copyWith(
@@ -102,7 +102,7 @@ class WeeklyProgressChart extends StatelessWidget {
                         reservedSize: 40,
                         getTitlesWidget: (value, meta) {
                           return SideTitleWidget(
-                            axisSide: meta.axisSide,
+                            meta: meta,
                             child: Text(
                               '${(value * 100).toInt()}%',
                               style: theme.textTheme.bodySmall?.copyWith(
@@ -158,7 +158,8 @@ class WeeklyProgressChart extends StatelessWidget {
                   lineTouchData: LineTouchData(
                     enabled: true,
                     touchTooltipData: LineTouchTooltipData(
-                      tooltipBgColor: theme.colorScheme.surfaceContainerHighest,
+                      getTooltipColor: (touchedSpot) =>
+                          theme.colorScheme.surfaceContainerHighest,
                       getTooltipItems: (touchedSpots) {
                         return touchedSpots.map((spot) {
                           final weekIndex = spot.x.toInt();

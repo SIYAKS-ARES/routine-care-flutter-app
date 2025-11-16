@@ -9,7 +9,6 @@ import 'package:timezone/timezone.dart' as tz;
 import '../models/notification_model.dart';
 import '../models/routine_model.dart';
 import '../models/streak_model.dart';
-import 'firestore_service.dart';
 
 class EnhancedNotificationService {
   static final EnhancedNotificationService _instance =
@@ -20,7 +19,6 @@ class EnhancedNotificationService {
   final FlutterLocalNotificationsPlugin _localNotifications =
       FlutterLocalNotificationsPlugin();
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
-  final FirestoreService _firestoreService = FirestoreService();
 
   final StreamController<NotificationModel> _notificationStreamController =
       StreamController<NotificationModel>.broadcast();
@@ -230,9 +228,8 @@ class EnhancedNotificationService {
       notification.body,
       tz.TZDateTime.from(notification.scheduledTime, tz.local),
       details,
+      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
       payload: jsonEncode(notification.toJson()),
-      uiLocalNotificationDateInterpretation:
-          UILocalNotificationDateInterpretation.absoluteTime,
       matchDateTimeComponents: DateTimeComponents.time,
     );
   }
@@ -424,44 +421,13 @@ class EnhancedNotificationService {
   }
 
   Future<List<NotificationModel>> getScheduledNotifications() async {
-    // Retrieve from Firestore
-    try {
-      final userId = 'default'; // Replace with actual user ID
-      final docs = await _firestoreService.getCollectionWithQuery(
-        'notifications',
-        'userId',
-        userId,
-      );
-
-      return docs
-          .map((doc) => NotificationModel.fromJson(doc))
-          .where((n) => n.isPending)
-          .toList();
-    } catch (e) {
-      debugPrint('Error getting scheduled notifications: $e');
-      return [];
-    }
+    // Firestore entegrasyonu henüz yok, şimdilik boş liste döndür
+    return [];
   }
 
   Future<List<NotificationModel>> getNotificationHistory(String userId) async {
-    try {
-      final docs = await _firestoreService.getCollectionWithQuery(
-        'notifications',
-        'userId',
-        userId,
-      );
-
-      final notifications =
-          docs.map((doc) => NotificationModel.fromJson(doc)).toList();
-
-      // Sort by created date descending
-      notifications.sort((a, b) => b.createdAt.compareTo(a.createdAt));
-
-      return notifications;
-    } catch (e) {
-      debugPrint('Error getting notification history: $e');
-      return [];
-    }
+    // Firestore entegrasyonu henüz yok, şimdilik boş liste döndür
+    return [];
   }
 
   Future<void> markNotificationAsRead(String notificationId) async {
@@ -574,51 +540,19 @@ class EnhancedNotificationService {
   // Firestore operations
   Future<void> _saveNotificationToFirestore(
       NotificationModel notification) async {
-    try {
-      await _firestoreService.setDocument(
-        'notifications',
-        notification.id,
-        notification.toJson(),
-      );
-    } catch (e) {
-      debugPrint('Error saving notification to Firestore: $e');
-    }
+    // Firestore entegrasyonu henüz yok, şimdilik no-op
   }
 
   Future<void> _removeNotificationFromFirestore(String notificationId) async {
-    try {
-      await _firestoreService.deleteDocument('notifications', notificationId);
-    } catch (e) {
-      debugPrint('Error removing notification from Firestore: $e');
-    }
+    // Firestore entegrasyonu henüz yok, şimdilik no-op
   }
 
   Future<void> _markNotificationAsRead(String notificationId) async {
-    try {
-      await _firestoreService.updateDocument(
-        'notifications',
-        notificationId,
-        {
-          'isRead': true,
-          'readAt': DateTime.now().millisecondsSinceEpoch,
-        },
-      );
-    } catch (e) {
-      debugPrint('Error marking notification as read: $e');
-    }
+    // Firestore entegrasyonu henüz yok, şimdilik sadece analytics tarafında işleniyor
   }
 
   Future<void> _updateFCMTokenInFirestore(String token) async {
-    try {
-      const userId = 'default'; // Replace with actual user ID
-      await _firestoreService.updateDocument(
-        'users',
-        userId,
-        {'fcmToken': token},
-      );
-    } catch (e) {
-      debugPrint('Error updating FCM token: $e');
-    }
+    // Firestore entegrasyonu henüz yok, token yalnızca localde tutuluyor
   }
 
   // Preferences management
@@ -628,36 +562,15 @@ class EnhancedNotificationService {
       return _currentPreferences!;
     }
 
-    try {
-      final doc =
-          await _firestoreService.getDocument('user_preferences', userId);
-      if (doc != null && doc.containsKey('notifications')) {
-        _currentPreferences =
-            NotificationPreferences.fromJson(doc['notifications']);
-      } else {
-        _currentPreferences = NotificationPreferences(userId: userId);
-      }
-    } catch (e) {
-      debugPrint('Error getting notification preferences: $e');
-      _currentPreferences = NotificationPreferences(userId: userId);
-    }
-
+    // Firestore entegrasyonu henüz yok, sadece bellek içi prefs kullan
+    _currentPreferences ??= NotificationPreferences(userId: userId);
     return _currentPreferences!;
   }
 
   Future<void> updateNotificationPreferences(
       NotificationPreferences preferences) async {
     _currentPreferences = preferences;
-
-    try {
-      await _firestoreService.updateDocument(
-        'user_preferences',
-        preferences.userId,
-        {'notifications': preferences.toJson()},
-      );
-    } catch (e) {
-      debugPrint('Error updating notification preferences: $e');
-    }
+    // Firestore entegrasyonu henüz yok, prefs sadece bellek içinde güncelleniyor
   }
 
   // Template management

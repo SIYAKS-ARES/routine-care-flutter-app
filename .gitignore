@@ -49,3 +49,5 @@ pubspec.lock
 pubspec.lock
 *.lock
 pubspec.lock
+
+/.old-files

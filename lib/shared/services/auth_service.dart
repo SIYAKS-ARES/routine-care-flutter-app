@@ -11,7 +11,9 @@ class AuthService {
   AuthService._internal();
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  final GoogleSignIn _googleSignIn = GoogleSignIn();
+  final GoogleSignIn _googleSignIn = GoogleSignIn(
+    scopes: ['email', 'profile'],
+  );
   final FirestoreService _firestoreService = FirestoreService();
   final Logger _logger = Logger();
 
@@ -79,14 +81,13 @@ class AuthService {
   // Google Sign In
   Future<UserModel?> signInWithGoogle() async {
     try {
-      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+      final googleUser = await _googleSignIn.signIn();
       if (googleUser == null) {
         _logger.w('Google sign in cancelled by user');
         return null;
       }
 
-      final GoogleSignInAuthentication googleAuth =
-          googleUser.authentication;
+      final googleAuth = await googleUser.authentication;
 
       final credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,

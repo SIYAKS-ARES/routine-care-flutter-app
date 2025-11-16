@@ -15,7 +15,6 @@ import '../../features/goal_management/data/repositories/goal_repository.dart';
 import '../../features/category_management/data/repositories/category_repository.dart';
 import '../../features/achievement_system/data/repositories/achievement_repository.dart';
 import '../../features/achievement_system/domain/entities/user_progress.dart';
-import '../../features/achievement_system/domain/entities/achievement_statistics.dart';
 
 enum ExportFormat { json, csv }
 
@@ -312,22 +311,22 @@ class DataExportService {
 
     switch (dataType) {
       case ExportDataType.all:
-        routines = await _routineRepository.getAllRoutines();
+        routines = await _routineRepository.getRoutines();
         goals = await _goalRepository.getAllGoals();
-        categories = await _categoryRepository.getAllCategories();
+        categories = await _categoryRepository.getCategories();
         achievements = await _achievementRepository.getAllAchievements();
         if (includeUserProgress) {
           userProgress = await _achievementRepository.getUserProgress();
         }
         break;
       case ExportDataType.routines:
-        routines = await _routineRepository.getAllRoutines();
+        routines = await _routineRepository.getRoutines();
         break;
       case ExportDataType.goals:
         goals = await _goalRepository.getAllGoals();
         break;
       case ExportDataType.categories:
-        categories = await _categoryRepository.getAllCategories();
+        categories = await _categoryRepository.getCategories();
         break;
       case ExportDataType.achievements:
         achievements = await _achievementRepository.getAllAchievements();
@@ -366,21 +365,18 @@ class DataExportService {
 
   Future<String> _exportRoutinesToCsv() async {
     _routineRepository.initialize();
-    final routines = await _routineRepository.getAllRoutines();
+    final routines = await _routineRepository.getRoutines();
 
     final headers = [
       'ID',
       'İsim',
       'Açıklama',
       'Kategori ID',
-      'Hedef Gün Sayısı',
       'Oluşturulma Tarihi',
       'Aktif',
-      'Renk',
-      'İkon',
       'Hatırlatıcı Zamanı',
-      'Tamamlanma Sayısı',
-      'En Uzun Seri',
+      'Son Tamamlama Tarihi',
+      'Tamamlama Geçmişi (adet)',
     ];
 
     final rows = routines
@@ -389,14 +385,13 @@ class DataExportService {
               routine.name,
               routine.description,
               routine.categoryId,
-              routine.goalDays.toString(),
               routine.createdAt.toIso8601String(),
               routine.isActive.toString(),
-              routine.color.value.toString(),
-              routine.icon.codePoint.toString(),
-              routine.reminderTime?.toIso8601String() ?? '',
-              routine.completedDays.length.toString(),
-              routine.longestStreak.toString(),
+              routine.reminderTime != null
+                  ? '${routine.reminderTime!.hour.toString().padLeft(2, '0')}:${routine.reminderTime!.minute.toString().padLeft(2, '0')}'
+                  : '',
+              routine.lastCompletedAt?.toIso8601String() ?? '',
+              routine.completionHistory.length.toString(),
             ])
         .toList();
 
@@ -409,7 +404,7 @@ class DataExportService {
 
     final headers = [
       'ID',
-      'Başlık',
+      'İsim',
       'Açıklama',
       'Hedef Tür',
       'Zorluk',
@@ -426,14 +421,14 @@ class DataExportService {
     final rows = goals
         .map((goal) => [
               goal.id,
-              goal.title,
+              goal.name,
               goal.description,
               goal.type.name,
               goal.difficulty.name,
               goal.categoryId ?? '',
               goal.routineId ?? '',
               goal.startDate.toIso8601String(),
-              goal.endDate.toIso8601String(),
+              goal.endDate?.toIso8601String() ?? '',
               goal.targetValue.toString(),
               goal.currentProgress.toString(),
               goal.status.name,
@@ -446,7 +441,7 @@ class DataExportService {
 
   Future<String> _exportCategoriesToCsv() async {
     _categoryRepository.initialize();
-    final categories = await _categoryRepository.getAllCategories();
+    final categories = await _categoryRepository.getCategories();
 
     final headers = [
       'ID',
@@ -528,12 +523,11 @@ class DataExportService {
       for (final category in exportData.categories) {
         try {
           // Check if category already exists
-          final existingCategories =
-              await _categoryRepository.getAllCategories();
+          final existingCategories = await _categoryRepository.getCategories();
           final exists = existingCategories.any((c) => c.id == category.id);
 
           if (!exists) {
-            await _categoryRepository.createCategory(category);
+            await _categoryRepository.addCategory(category);
             importedCategories++;
           }
         } catch (e) {
@@ -545,11 +539,11 @@ class DataExportService {
       for (final routine in exportData.routines) {
         try {
           // Check if routine already exists
-          final existingRoutines = await _routineRepository.getAllRoutines();
+          final existingRoutines = await _routineRepository.getRoutines();
           final exists = existingRoutines.any((r) => r.id == routine.id);
 
           if (!exists) {
-            await _routineRepository.createRoutine(routine);
+            await _routineRepository.addRoutine(routine.name);
             importedRoutines++;
           }
         } catch (e) {
@@ -569,7 +563,7 @@ class DataExportService {
             importedGoals++;
           }
         } catch (e) {
-          errors.add('Hedef import hatası (${goal.title}): $e');
+          errors.add('Hedef import hatası (${goal.name}): $e');
         }
       }
 

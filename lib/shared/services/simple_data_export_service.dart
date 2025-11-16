@@ -172,22 +172,22 @@ class SimpleDataExportService {
 
     switch (dataType) {
       case SimpleExportDataType.all:
-        routines = await _routineRepository.getAllRoutines();
+        routines = await _routineRepository.getRoutines();
         goals = await _goalRepository.getAllGoals();
-        categories = await _categoryRepository.getAllCategories();
+        categories = await _categoryRepository.getCategories();
         achievements = await _achievementRepository.getAllAchievements();
         if (includeUserProgress) {
           userProgress = await _achievementRepository.getUserProgress();
         }
         break;
       case SimpleExportDataType.routines:
-        routines = await _routineRepository.getAllRoutines();
+        routines = await _routineRepository.getRoutines();
         break;
       case SimpleExportDataType.goals:
         goals = await _goalRepository.getAllGoals();
         break;
       case SimpleExportDataType.categories:
-        categories = await _categoryRepository.getAllCategories();
+        categories = await _categoryRepository.getCategories();
         break;
       case SimpleExportDataType.achievements:
         achievements = await _achievementRepository.getAllAchievements();
@@ -238,12 +238,11 @@ class SimpleDataExportService {
       for (final category in exportData.categories) {
         try {
           // Check if category already exists
-          final existingCategories =
-              await _categoryRepository.getAllCategories();
+          final existingCategories = await _categoryRepository.getCategories();
           final exists = existingCategories.any((c) => c.id == category.id);
 
           if (!exists) {
-            await _categoryRepository.createCategory(category);
+            await _categoryRepository.addCategory(category);
             importedCategories++;
           }
         } catch (e) {
@@ -255,11 +254,11 @@ class SimpleDataExportService {
       for (final routine in exportData.routines) {
         try {
           // Check if routine already exists
-          final existingRoutines = await _routineRepository.getAllRoutines();
+          final existingRoutines = await _routineRepository.getRoutines();
           final exists = existingRoutines.any((r) => r.id == routine.id);
 
           if (!exists) {
-            await _routineRepository.createRoutine(routine);
+            await _routineRepository.addRoutine(routine.name);
             importedRoutines++;
           }
         } catch (e) {
@@ -279,7 +278,7 @@ class SimpleDataExportService {
             importedGoals++;
           }
         } catch (e) {
-          errors.add('Hedef import hatası (${goal.title}): $e');
+          errors.add('Hedef import hatası (${goal.name}): $e');
         }
       }
 

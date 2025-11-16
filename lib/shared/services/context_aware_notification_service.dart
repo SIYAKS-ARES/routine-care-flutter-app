@@ -5,6 +5,7 @@ import '../models/notification_model.dart';
 import '../models/routine_model.dart';
 import '../models/streak_model.dart';
 import 'enhanced_notification_service.dart';
+import 'notification_service.dart';
 import 'smart_notification_scheduler.dart';
 import 'streak_service.dart';
 import 'firestore_service.dart';
@@ -18,7 +19,7 @@ class ContextAwareNotificationService {
   final EnhancedNotificationService _notificationService =
       EnhancedNotificationService();
   final SmartNotificationScheduler _scheduler = SmartNotificationScheduler();
-  final StreakService _streakService = StreakService();
+  late final StreakService _streakService;
   final FirestoreService _firestoreService = FirestoreService();
 
   Timer? _contextMonitoringTimer;
@@ -38,6 +39,8 @@ class ContextAwareNotificationService {
     if (_isInitialized && _currentUserId == userId) return;
 
     _currentUserId = userId;
+
+    _streakService = StreakService(_firestoreService, NotificationService());
 
     await _notificationService.initialize();
     await _scheduler.initialize();
@@ -166,12 +169,14 @@ class ContextAwareNotificationService {
     if (_currentUserId == null) return;
 
     try {
-      final streaks = await _streakService.getUserStreaks(_currentUserId!);
+      final streaks = await _streakService.getAllActiveStreaks(_currentUserId!);
 
       for (final streak in streaks) {
-        if (streak.riskLevel == StreakRiskLevel.high) {
+        // Yüksek risk: riskLevel 0.8 ve üzeri
+        if (streak.riskLevel >= 0.8) {
           await _handleHighRiskStreak(streak);
-        } else if (streak.riskLevel == StreakRiskLevel.medium) {
+          // Orta risk: 0.5 - 0.8 aralığı
+        } else if (streak.riskLevel >= 0.5) {
           await _handleMediumRiskStreak(streak);
         }
       }
@@ -184,7 +189,7 @@ class ContextAwareNotificationService {
     final context = _contextCache[_currentUserId];
     if (context == null) return;
 
-    // High-risk streaks get immediate attention
+    // Yüksek riskli streakler için anında dikkat
     final hoursLeft = _calculateHoursUntilEndOfDay();
 
     if (hoursLeft <= 3 && !context.hasRecentStreakWarning) {
@@ -209,7 +214,7 @@ class ContextAwareNotificationService {
     final context = _contextCache[_currentUserId];
     if (context == null || !context.isOptimalTime) return;
 
-    // Medium-risk streaks get gentle reminders at optimal times
+    // Orta riskli streakler için nazik hatırlatmalar
     await scheduleContextAwareNotification(
       type: NotificationType.streakWarning,
       title: '⚡ Serin Devam Etsin',
@@ -231,7 +236,7 @@ class ContextAwareNotificationService {
     final context = _contextCache[_currentUserId];
     if (context == null) return;
 
-    // Check if user needs motivation
+    // Kullanıcıya motivasyon mesajı göndermek gerekiyor mu?
     if (_shouldSendMotivationalMessage(context)) {
       final message = await _generateContextualMotivationalMessage(context);
 
@@ -250,22 +255,22 @@ class ContextAwareNotificationService {
   }
 
   bool _shouldSendMotivationalMessage(UserContext context) {
-    // Don't send if user is stressed or has had many recent notifications
+    // Stresli veya çok sayıda yakın zamanda gönderilmiş bildirim varsa gönderme
     if (context.stressLevel > 0.7 || context.recentNotificationCount > 3) {
       return false;
     }
 
-    // Send if motivation is low and it's an optimal time
+    // Motivasyon düzeyi düşük ve optimal zaman ise gönder
     if (context.motivationLevel < 0.4 && context.isOptimalTime) {
       return true;
     }
 
-    // Send if user has been inactive for a while
+    // Kullanıcı uzun süredir aktif değilse gönder
     if (context.appActivityLevel < 0.3 && context.isOptimalTime) {
       return true;
     }
 
-    // Occasional motivation for active users
+    // Aktif kullanıcılar için ara sıra motivasyon
     if (context.routineCompletionRate > 0.8 &&
         math.Random().nextDouble() < 0.3) {
       return true;
@@ -312,7 +317,7 @@ class ContextAwareNotificationService {
       );
     }
 
-    // Default motivational message
+    // Varsayılan motivasyon mesajı
     const messages = [
       MotivationalMessage(
         title: 'Sen Değerlisin ✨',
@@ -342,34 +347,34 @@ class ContextAwareNotificationService {
     final context = _contextCache[_currentUserId];
     if (context == null) return;
 
-    // Sort queue by priority and context relevance
+    // Sıralama: öncelik ve bağlam uygunluğu
     _notificationQueue.sort((a, b) {
       final aPriority = a.priority.index;
       final bPriority = b.priority.index;
 
       if (aPriority != bPriority) {
-        return bPriority.compareTo(aPriority); // Higher priority first
+        return bPriority.compareTo(aPriority); // Yüksek öncelikli önce
       }
 
       return a.createdAt
-          .compareTo(b.createdAt); // Older first for same priority
+          .compareTo(b.createdAt); // Aynı öncelikli için eski önce
     });
 
-    // Process notifications based on context
+    // Bildirimleri bağlama göre işleme
     final now = DateTime.now();
     final notifications = _notificationQueue
         .where((n) {
-          // Don't process if too many recent notifications
+          // Çok sayıda yakın zamanda gönderilmiş bildirim varsa işleme alma
           if (context.recentNotificationCount >= 3) {
             return n.priority == NotificationPriority.urgent;
           }
 
-          // Don't process if user seems unavailable
+          // Kullanıcı müsait görünmüyorsa işleme alma
           if (context.availabilityScore < 0.3) {
             return n.priority.index >= NotificationPriority.high.index;
           }
 
-          // Don't process if it's not an optimal time
+          // Optimal zaman değilse ve düşük öncelikli ise işleme alma
           if (!context.isOptimalTime &&
               n.priority == NotificationPriority.low) {
             return false;
@@ -378,7 +383,7 @@ class ContextAwareNotificationService {
           return true;
         })
         .take(2)
-        .toList(); // Max 2 notifications at once
+        .toList(); // En fazla 2 bildirim aynı anda
 
     for (final notification in notifications) {
       await _deliverNotificationImmediately(notification);
@@ -406,19 +411,19 @@ class ContextAwareNotificationService {
   }
 
   Future<void> _adjustScheduledNotifications(UserContext context) async {
-    // This would adjust already scheduled notifications based on current context
-    // For example, delay low-priority notifications if user is stressed
-    // Implementation depends on notification service capabilities
+    // Bu, mevcut bağlama göre zaten planlanmış bildirimleri ayarlayacaktır
+    // Örneğin, düşük öncelikli bildirimleri erteleme
+    // Uygulama, bildirim servisi yeteneklerine bağlıdır
   }
 
-  // Helper methods for context gathering
+  // Bağlam toplama yardımcı yöntemleri
   Future<double> _getAppActivityLevel(String userId) async {
-    // Mock implementation - in real app, track app usage
-    return 0.7; // 70% activity level
+    // Mock uygulama - gerçek uygulamada, uygulama kullanımını izleme
+    return 0.7; // %70 aktivite düzeyi
   }
 
   Future<RoutineProgress> _getRoutineProgress(String userId) async {
-    // Mock implementation - get from routine service
+    // Mock uygulama - gerçek uygulamada, rutin servisinden alma
     return RoutineProgress(
       completionRate: 0.8,
       pendingCount: 2,
@@ -428,15 +433,17 @@ class ContextAwareNotificationService {
 
   Future<StreakStatus> _getStreakStatus(String userId) async {
     try {
-      final streaks = await _streakService.getUserStreaks(userId);
+      final streaks = await _streakService.getAllActiveStreaks(userId);
 
       int atRisk = 0;
       int inDanger = 0;
 
       for (final streak in streaks) {
-        if (streak.riskLevel == StreakRiskLevel.high) {
+        // Yüksek risk: riskLevel 0.8 ve üzeri
+        if (streak.riskLevel >= 0.8) {
           inDanger++;
-        } else if (streak.riskLevel == StreakRiskLevel.medium) {
+          // Orta risk: 0.5 - 0.8 aralığı
+        } else if (streak.riskLevel >= 0.5) {
           atRisk++;
         }
       }

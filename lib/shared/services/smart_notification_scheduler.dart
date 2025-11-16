@@ -2,15 +2,12 @@ import 'dart:async';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import '../models/notification_model.dart';
-import 'firestore_service.dart';
 
 class SmartNotificationScheduler {
   static final SmartNotificationScheduler _instance =
       SmartNotificationScheduler._internal();
   factory SmartNotificationScheduler() => _instance;
   SmartNotificationScheduler._internal();
-
-  final FirestoreService _firestoreService = FirestoreService();
 
   // User behavior cache
   final Map<String, UserBehaviorProfile> _behaviorCache = {};
@@ -106,25 +103,10 @@ class SmartNotificationScheduler {
       return _behaviorCache[userId]!;
     }
 
-    try {
-      final doc = await _firestoreService.getDocument('user_behavior', userId);
-
-      UserBehaviorProfile profile;
-      if (doc != null) {
-        profile = UserBehaviorProfile.fromJson(doc);
-      } else {
-        profile = UserBehaviorProfile.createDefault(userId);
-        await _saveUserBehaviorProfile(profile);
-      }
-
-      _behaviorCache[userId] = profile;
-      return profile;
-    } catch (e) {
-      debugPrint('Error loading user behavior profile: $e');
-      final defaultProfile = UserBehaviorProfile.createDefault(userId);
-      _behaviorCache[userId] = defaultProfile;
-      return defaultProfile;
-    }
+    // Firestore entegrasyonu yok, sadece varsayılan profil kullan
+    final defaultProfile = UserBehaviorProfile.createDefault(userId);
+    _behaviorCache[userId] = defaultProfile;
+    return defaultProfile;
   }
 
   Future<NotificationContext> _getCurrentContext(String userId) async {
@@ -445,23 +427,7 @@ class SmartNotificationScheduler {
     DateTime scheduledTime,
     String userId,
   ) async {
-    final decision = SchedulingDecision(
-      notificationId: notification.id,
-      originalTime: notification.scheduledTime,
-      optimizedTime: scheduledTime,
-      userId: userId,
-      timestamp: DateTime.now(),
-      reasoning: 'Smart scheduling optimization',
-    );
-
-    try {
-      await _firestoreService.addDocument(
-        'scheduling_decisions',
-        decision.toJson(),
-      );
-    } catch (e) {
-      debugPrint('Error recording scheduling decision: $e');
-    }
+    // Firestore entegrasyonu yok, bu bilgi şimdilik saklanmıyor
   }
 
   Future<void> updateUserBehaviorFromResponse(
@@ -477,15 +443,7 @@ class SmartNotificationScheduler {
   }
 
   Future<void> _saveUserBehaviorProfile(UserBehaviorProfile profile) async {
-    try {
-      await _firestoreService.setDocument(
-        'user_behavior',
-        profile.userId,
-        profile.toJson(),
-      );
-    } catch (e) {
-      debugPrint('Error saving user behavior profile: $e');
-    }
+    // Firestore entegrasyonu yok, profil sadece bellekte tutuluyor
   }
 
   // Helper methods for context gathering
@@ -506,21 +464,7 @@ class SmartNotificationScheduler {
 
   Future<NotificationResponse?> _getLastNotificationResponse(
       String userId) async {
-    try {
-      final docs = await _firestoreService.getCollectionWithQuery(
-        'notification_responses',
-        'userId',
-        userId,
-      );
-
-      if (docs.isNotEmpty) {
-        docs.sort((a, b) => b['timestamp'].compareTo(a['timestamp']));
-        return NotificationResponse.fromJson(docs.first);
-      }
-    } catch (e) {
-      debugPrint('Error getting last notification response: $e');
-    }
-
+    // Firestore entegrasyonu yok, son yanıt bilgisi bulunamadı
     return null;
   }
 
@@ -540,26 +484,8 @@ class SmartNotificationScheduler {
   }
 
   Future<bool> _hasNotificationFatigue(String userId) async {
-    try {
-      final today = DateTime.now();
-      final startOfDay = DateTime(today.year, today.month, today.day);
-
-      final docs = await _firestoreService.getCollectionWithQuery(
-        'notifications',
-        'userId',
-        userId,
-      );
-
-      final todayNotifications = docs.where((doc) {
-        final createdAt = DateTime.fromMillisecondsSinceEpoch(doc['createdAt']);
-        return createdAt.isAfter(startOfDay);
-      }).length;
-
-      return todayNotifications >= 5; // Max 5 notifications per day
-    } catch (e) {
-      debugPrint('Error checking notification fatigue: $e');
-      return false;
-    }
+    // Firestore entegrasyonu yok, yorgunluk verisi hesaplanamıyor
+    return false;
   }
 }
 

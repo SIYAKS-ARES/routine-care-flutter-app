@@ -30,8 +30,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   void _signIn() async {
     if (_formKey.currentState!.validate()) {
       await ref.read(authNotifierProvider.notifier).signInWithEmailAndPassword(
-            email: _emailController.text.trim(),
-            password: _passwordController.text,
+            _emailController.text.trim(),
+            _passwordController.text,
           );
     }
   }

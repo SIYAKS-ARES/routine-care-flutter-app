@@ -229,6 +229,115 @@ class FirestoreService {
     }
   }
 
+  // Generic document helpers
+  Future<void> addDocument(String collection, Map<String, dynamic> data) async {
+    if (!isFirebaseAvailable) {
+      _logger.w('Firebase not available - addDocument skipped for $collection');
+      return;
+    }
+
+    try {
+      await _firestore.collection(collection).add(data);
+      _logger.i('Document added to $collection');
+    } catch (e) {
+      _logger.e('Error adding document to $collection: $e');
+      rethrow;
+    }
+  }
+
+  Future<void> setDocument(
+      String collection, String docId, Map<String, dynamic> data) async {
+    if (!isFirebaseAvailable) {
+      _logger.w(
+          'Firebase not available - setDocument skipped for $collection/$docId');
+      return;
+    }
+
+    try {
+      await _firestore.collection(collection).doc(docId).set(data);
+      _logger.i('Document set: $collection/$docId');
+    } catch (e) {
+      _logger.e('Error setting document $collection/$docId: $e');
+      rethrow;
+    }
+  }
+
+  Future<void> updateDocument(
+      String collection, String docId, Map<String, dynamic> data) async {
+    if (!isFirebaseAvailable) {
+      _logger.w(
+          'Firebase not available - updateDocument skipped for $collection/$docId');
+      return;
+    }
+
+    try {
+      await _firestore.collection(collection).doc(docId).update(data);
+      _logger.i('Document updated: $collection/$docId');
+    } catch (e) {
+      _logger.e('Error updating document $collection/$docId: $e');
+      rethrow;
+    }
+  }
+
+  Future<void> deleteDocument(String collection, String docId) async {
+    if (!isFirebaseAvailable) {
+      _logger.w(
+          'Firebase not available - deleteDocument skipped for $collection/$docId');
+      return;
+    }
+
+    try {
+      await _firestore.collection(collection).doc(docId).delete();
+      _logger.i('Document deleted: $collection/$docId');
+    } catch (e) {
+      _logger.e('Error deleting document $collection/$docId: $e');
+      rethrow;
+    }
+  }
+
+  Future<Map<String, dynamic>?> getDocument(
+      String collection, String docId) async {
+    if (!isFirebaseAvailable) {
+      _logger.w(
+          'Firebase not available - getDocument skipped for $collection/$docId');
+      return null;
+    }
+
+    try {
+      final doc = await _firestore.collection(collection).doc(docId).get();
+      return doc.data();
+    } catch (e) {
+      _logger.e('Error getting document $collection/$docId: $e');
+      return null;
+    }
+  }
+
+  Future<List<Map<String, dynamic>>> getCollectionWithQuery(
+    String collection,
+    String field,
+    dynamic value,
+  ) async {
+    if (!isFirebaseAvailable) {
+      _logger.w(
+          'Firebase not available - getCollectionWithQuery skipped for $collection');
+      return [];
+    }
+
+    try {
+      final querySnapshot = await _firestore
+          .collection(collection)
+          .where(field, isEqualTo: value)
+          .get();
+
+      return querySnapshot.docs
+          .map((doc) => doc.data() as Map<String, dynamic>)
+          .toList();
+    } catch (e) {
+      _logger.e('Error querying $collection by $field: $e');
+      return [];
+    }
+  }
+
   // Batch operations for efficiency
   Future<void> batchCreateRoutines(
       List<RoutineModel> routines, String userId) async {
