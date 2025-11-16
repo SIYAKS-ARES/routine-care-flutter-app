@@ -57,9 +57,9 @@ class _SkeletonLoadingState extends State<SkeletonLoading>
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
               colors: [
-                colorScheme.surfaceVariant.withOpacity(0.3),
-                colorScheme.surfaceVariant.withOpacity(0.1),
-                colorScheme.surfaceVariant.withOpacity(0.3),
+                colorScheme.surfaceContainerHighest.withOpacity(0.3),
+                colorScheme.surfaceContainerHighest.withOpacity(0.1),
+                colorScheme.surfaceContainerHighest.withOpacity(0.3),
               ],
               stops: [
                 (_animation.value - 1).clamp(0.0, 1.0),

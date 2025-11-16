@@ -24,12 +24,11 @@ class CustomPageTransition<T> extends PageRouteBuilder<T> {
     this.duration = const Duration(milliseconds: 300),
     this.reverseDuration = const Duration(milliseconds: 250),
     this.curve = Curves.easeInOut,
-    RouteSettings? settings,
+    super.settings,
   }) : super(
           pageBuilder: (context, animation, _) => child,
           transitionDuration: duration,
           reverseTransitionDuration: reverseDuration,
-          settings: settings,
         );
 
   @override

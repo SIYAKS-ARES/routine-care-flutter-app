@@ -199,7 +199,7 @@ class AchievementStatisticsWidget extends StatelessWidget {
                   color,
                 ),
               );
-            }).toList(),
+            }),
           ],
         ),
       ),
@@ -235,7 +235,7 @@ class AchievementStatisticsWidget extends StatelessWidget {
                   color,
                 ),
               );
-            }).toList(),
+            }),
           ],
         ),
       ),

@@ -409,7 +409,7 @@ class _AnimatedPullIndicatorState extends State<AnimatedPullIndicator>
     final progress =
         (widget.pullDistance / widget.maxPullDistance).clamp(0.0, 1.0);
 
-    return Container(
+    return SizedBox(
       height: 60,
       child: Center(
         child: Stack(
@@ -423,7 +423,7 @@ class _AnimatedPullIndicatorState extends State<AnimatedPullIndicator>
                 value: widget.isActive ? null : progress,
                 strokeWidth: 3,
                 color: widget.color ?? colorScheme.primary,
-                backgroundColor: colorScheme.surfaceVariant,
+                backgroundColor: colorScheme.surfaceContainerHighest,
               ),
             ),
 

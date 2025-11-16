@@ -2,8 +2,6 @@ import 'dart:async';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import '../models/notification_model.dart';
-import '../models/routine_model.dart';
-import '../models/streak_model.dart';
 import 'firestore_service.dart';
 
 class SmartNotificationScheduler {
