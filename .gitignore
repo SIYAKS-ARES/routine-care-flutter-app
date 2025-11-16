@@ -46,3 +46,6 @@ app.*.map.json
 
 #hmmmm
 pubspec.lock
+pubspec.lock
+*.lock
+pubspec.lock
