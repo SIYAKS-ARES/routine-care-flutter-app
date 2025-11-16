@@ -1,10 +1,8 @@
 import '../models/achievement_model.dart';
 import '../models/routine_model.dart';
-import '../models/user_level_model.dart';
 import '../data/achievement_definitions.dart';
 import '../../features/achievement_system/domain/entities/user_progress.dart';
 import '../../features/achievement_system/domain/entities/achievement_statistics.dart';
-import 'scoring_service.dart';
 
 class AchievementService {
   /// Check all conditions and return newly unlocked achievements
@@ -19,8 +17,9 @@ class AchievementService {
 
     for (final achievement in availableAchievements) {
       // Skip already unlocked achievements
-      if (currentUserAchievements
-          .any((ua) => ua.id == achievement.id && ua.isUnlocked)) {
+      if (currentUserAchievements.any(
+        (ua) => ua.id == achievement.id && ua.isUnlocked,
+      )) {
         continue;
       }
 
@@ -129,8 +128,9 @@ class AchievementService {
 
       case UnlockConditionType.categoryMastery:
         if (condition.categoryId != null) {
-          currentValue =
-              userProgress.getCategoryCompletions(condition.categoryId!);
+          currentValue = userProgress.getCategoryCompletions(
+            condition.categoryId!,
+          );
           progressText =
               '$currentValue/${condition.targetValue} ${condition.categoryId} routines';
         }
@@ -149,8 +149,9 @@ class AchievementService {
 
       case UnlockConditionType.perfectWeek:
         currentValue = userProgress.perfectWeekAchieved ? 1 : 0;
-        progressText =
-            currentValue > 0 ? 'Perfect week achieved' : 'No perfect week yet';
+        progressText = currentValue > 0
+            ? 'Perfect week achieved'
+            : 'No perfect week yet';
         break;
 
       case UnlockConditionType.custom:
@@ -229,8 +230,9 @@ class AchievementService {
         final comebackCount = userProgress.customData['comebacks'] as int? ?? 0;
         return CustomConditionResult(
           currentValue: comebackCount,
-          progressText:
-              comebackCount > 0 ? 'Comeback achieved' : 'No comeback yet',
+          progressText: comebackCount > 0
+              ? 'Comeback achieved'
+              : 'No comeback yet',
         );
 
       case 'perfect_completion':
@@ -255,8 +257,9 @@ class AchievementService {
       case 'after_10pm':
         // Time-based achievements
         final timeCount = userProgress.customData[action] as int? ?? 0;
-        final timeLabel =
-            action == 'before_8am' ? 'early morning' : 'late night';
+        final timeLabel = action == 'before_8am'
+            ? 'early morning'
+            : 'late night';
         return CustomConditionResult(
           currentValue: timeCount,
           progressText:
@@ -273,7 +276,9 @@ class AchievementService {
 
   /// Check milestone conditions
   static int _checkMilestone(
-      UnlockCondition condition, UserProgress userProgress) {
+    UnlockCondition condition,
+    UserProgress userProgress,
+  ) {
     // Simple milestone check - can be enhanced
     final totalProgress =
         userProgress.routineCompletions + userProgress.goalCompletions;
@@ -297,14 +302,17 @@ class AchievementService {
 
         // Update category completions
         if (routine?.categoryId != null) {
-          updatedProgress = updatedProgress
-              .incrementCategoryCompletions(routine!.categoryId!);
+          updatedProgress = updatedProgress.incrementCategoryCompletions(
+            routine!.categoryId!,
+          );
         }
 
         // Update time-based tracking
         if (timestamp != null) {
-          updatedProgress =
-              _updateTimeBasedProgress(updatedProgress, timestamp);
+          updatedProgress = _updateTimeBasedProgress(
+            updatedProgress,
+            timestamp,
+          );
         }
 
         // Update streak
@@ -317,8 +325,9 @@ class AchievementService {
 
       case 'create_routine':
         // Track routine creation
-        final customData =
-            Map<String, dynamic>.from(updatedProgress.customData);
+        final customData = Map<String, dynamic>.from(
+          updatedProgress.customData,
+        );
         customData['routines_created'] =
             (customData['routines_created'] as int? ?? 0) + 1;
         updatedProgress = updatedProgress.copyWith(customData: customData);
@@ -332,20 +341,23 @@ class AchievementService {
         // Update consecutive days
         final lastLogin = updatedProgress.customData['last_login'] as String?;
         final consecutiveDays = _calculateConsecutiveDays(lastLogin, now);
-        updatedProgress =
-            updatedProgress.updateConsecutiveDays(consecutiveDays);
+        updatedProgress = updatedProgress.updateConsecutiveDays(
+          consecutiveDays,
+        );
 
         // Update last login
-        final customData =
-            Map<String, dynamic>.from(updatedProgress.customData);
+        final customData = Map<String, dynamic>.from(
+          updatedProgress.customData,
+        );
         customData['last_login'] = now.toIso8601String();
         updatedProgress = updatedProgress.copyWith(customData: customData);
         break;
 
       case 'comeback':
         // Track comeback after break
-        final customData =
-            Map<String, dynamic>.from(updatedProgress.customData);
+        final customData = Map<String, dynamic>.from(
+          updatedProgress.customData,
+        );
         customData['comebacks'] = (customData['comebacks'] as int? ?? 0) + 1;
         updatedProgress = updatedProgress.copyWith(customData: customData);
         break;
@@ -356,7 +368,9 @@ class AchievementService {
 
   /// Update time-based progress tracking
   static UserProgress _updateTimeBasedProgress(
-      UserProgress progress, DateTime timestamp) {
+    UserProgress progress,
+    DateTime timestamp,
+  ) {
     final hour = timestamp.hour;
     final isWeekend = timestamp.weekday >= 6;
     final customData = Map<String, dynamic>.from(progress.customData);
@@ -379,7 +393,9 @@ class AchievementService {
 
   /// Update streak based on completion timing
   static UserProgress _updateStreak(
-      UserProgress progress, DateTime? timestamp) {
+    UserProgress progress,
+    DateTime? timestamp,
+  ) {
     if (timestamp == null) return progress;
 
     final lastCompletion = progress.lastUpdated;
@@ -401,7 +417,9 @@ class AchievementService {
 
   /// Calculate consecutive login days
   static int _calculateConsecutiveDays(
-      String? lastLoginString, DateTime currentLogin) {
+    String? lastLoginString,
+    DateTime currentLogin,
+  ) {
     if (lastLoginString == null) return 1;
 
     try {
@@ -445,8 +463,9 @@ class AchievementService {
     required UserProgress userProgress,
   }) {
     final totalAchievements = AchievementDefinitions.allAchievements.length;
-    final unlockedAchievements =
-        userAchievements.where((a) => a.isUnlocked).length;
+    final unlockedAchievements = userAchievements
+        .where((a) => a.isUnlocked)
+        .length;
     final completionRate = totalAchievements > 0
         ? (unlockedAchievements / totalAchievements) * 100
         : 0.0;
@@ -467,8 +486,9 @@ class AchievementService {
     // Type breakdown
     final typeBreakdown = <AchievementType, int>{};
     for (final type in AchievementType.values) {
-      typeBreakdown[type] =
-          userAchievements.where((a) => a.isUnlocked && a.type == type).length;
+      typeBreakdown[type] = userAchievements
+          .where((a) => a.isUnlocked && a.type == type)
+          .length;
     }
 
     return AchievementStatistics(
@@ -501,10 +521,7 @@ class AchievementUnlockResult {
 
   /// Create unlocked achievement model
   AchievementModel toUnlockedAchievement() {
-    return achievement.copyWith(
-      isUnlocked: true,
-      unlockedAt: unlockedAt,
-    );
+    return achievement.copyWith(isUnlocked: true, unlockedAt: unlockedAt);
   }
 }
 
