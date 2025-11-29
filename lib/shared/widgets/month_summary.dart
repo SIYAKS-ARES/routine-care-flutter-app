@@ -48,7 +48,7 @@ class MonthSummary extends StatelessWidget {
             const SizedBox(height: 16),
             HeatMapCalendar(
               datasets: datasets,
-              colorMode: ColorMode.color,
+              colorMode: ColorMode.opacity,
               defaultColor: theme.colorScheme.surfaceContainerHighest
                   .withValues(alpha: 0.3),
               textColor: theme.colorScheme.onSurfaceVariant,

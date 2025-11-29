@@ -11,7 +11,15 @@ class FirestoreService {
   FirestoreService._internal();
 
   final Logger _logger = Logger();
-  FirebaseFirestore get _firestore => FirebaseFirestore.instance;
+  
+  FirebaseFirestore? _firestoreInstance;
+  FirebaseFirestore get _firestore {
+    if (!isFirebaseAvailable) {
+      throw StateError('Firebase has not been initialized. Call Firebase.initializeApp() first.');
+    }
+    _firestoreInstance ??= FirebaseFirestore.instance;
+    return _firestoreInstance!;
+  }
 
   bool get isFirebaseAvailable {
     try {
@@ -329,9 +337,7 @@ class FirestoreService {
           .where(field, isEqualTo: value)
           .get();
 
-      return querySnapshot.docs
-          .map((doc) => doc.data() as Map<String, dynamic>)
-          .toList();
+      return querySnapshot.docs.map((doc) => doc.data()).toList();
     } catch (e) {
       _logger.e('Error querying $collection by $field: $e');
       return [];

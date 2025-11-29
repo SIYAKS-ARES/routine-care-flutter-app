@@ -18,7 +18,8 @@ class RoutineRepository {
   final Box _hiveBox = Hive.box(AppConstants.hiveBoxName);
   // final FirestoreService _firestoreService = FirestoreService(); // Firebase şimdilik devre dışı
   final Logger _logger = Logger();
-  late final RoutineReminderService _reminderService;
+  RoutineReminderService? _reminderService;
+  bool _isInitialized = false;
 
   String? _currentUserId;
   final bool _isOnline = false; // Şimdilik false - sadece local storage
@@ -26,8 +27,28 @@ class RoutineRepository {
   // Initialize repository with user context
   void initialize({String? userId}) {
     _currentUserId = userId;
-    _reminderService = getIt<RoutineReminderService>();
+    try {
+      _reminderService = getIt<RoutineReminderService>();
+      _isInitialized = true;
+      _logger.i('RoutineRepository initialized successfully');
+    } catch (e) {
+      _logger.w('Failed to initialize RoutineReminderService: $e');
+      // Continue without reminder service
+    }
     // _checkConnectivity(); // Firebase devre dışı
+  }
+
+  RoutineReminderService get _safeReminderService {
+    if (!_isInitialized || _reminderService == null) {
+      try {
+        _reminderService = getIt<RoutineReminderService>();
+        _isInitialized = true;
+      } catch (e) {
+        _logger.w('Failed to get RoutineReminderService: $e');
+        throw StateError('RoutineReminderService not available');
+      }
+    }
+    return _reminderService!;
   }
 
   // Future<void> _checkConnectivity() async {
@@ -89,7 +110,12 @@ class RoutineRepository {
 
       // Schedule reminder if time is set
       if (newRoutine.reminderTime != null) {
-        await _reminderService.scheduleRoutineReminder(newRoutine);
+        try {
+          await _safeReminderService.scheduleRoutineReminder(newRoutine);
+        } catch (e) {
+          _logger.w('Failed to schedule reminder: $e');
+          // Continue without reminder
+        }
       }
 
       // Firebase şimdilik devre dışı
@@ -135,7 +161,12 @@ class RoutineRepository {
 
       // Schedule reminder if time is set
       if (newRoutine.reminderTime != null) {
-        await _reminderService.scheduleRoutineReminder(newRoutine);
+        try {
+          await _safeReminderService.scheduleRoutineReminder(newRoutine);
+        } catch (e) {
+          _logger.w('Failed to schedule reminder: $e');
+          // Continue without reminder
+        }
       }
 
       // Firebase şimdilik devre dışı
@@ -163,7 +194,12 @@ class RoutineRepository {
       await _updateRoutineLocally(routine);
 
       // Update reminder
-      await _reminderService.updateRoutineReminder(routine);
+      try {
+        await _safeReminderService.updateRoutineReminder(routine);
+      } catch (e) {
+        _logger.w('Failed to update reminder: $e');
+        // Continue without reminder update
+      }
 
       // Firebase şimdilik devre dışı
       // if (_isOnline && _currentUserId != null) {
@@ -204,7 +240,11 @@ class RoutineRepository {
       // Handle notification actions based on completion status
       if (updatedRoutine.isCompleted) {
         // Show celebration notification
-        await _reminderService.showCompletionCelebration(updatedRoutine);
+        try {
+          await _safeReminderService.showCompletionCelebration(updatedRoutine);
+        } catch (e) {
+          _logger.w('Failed to show celebration: $e');
+        }
 
         // Save completion statistics
         if (_currentUserId != null) {
@@ -212,7 +252,11 @@ class RoutineRepository {
         }
       } else {
         // Schedule follow-up reminder if routine was uncompleted
-        await _reminderService.scheduleCompletionReminder(updatedRoutine);
+        try {
+          await _safeReminderService.scheduleCompletionReminder(updatedRoutine);
+        } catch (e) {
+          _logger.w('Failed to schedule completion reminder: $e');
+        }
       }
     } catch (e) {
       _logger.e('Error toggling routine completion: $e');
@@ -232,7 +276,12 @@ class RoutineRepository {
       await _updateRoutineLocally(updatedRoutine);
 
       // Cancel any scheduled reminders for this routine
-      await _reminderService.cancelRoutineReminder(routineId);
+      try {
+        await _safeReminderService.cancelRoutineReminder(routineId);
+      } catch (e) {
+        _logger.w('Failed to cancel reminder: $e');
+        // Continue without reminder cancellation
+      }
 
       // Firebase şimdilik devre dışı
       // if (_isOnline && _currentUserId != null) {

@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:logger/logger.dart';
+import 'package:flutter/foundation.dart';
 
 import '../models/user_model.dart';
 import 'firestore_service.dart';
@@ -10,22 +12,56 @@ class AuthService {
   factory AuthService() => _instance;
   AuthService._internal();
 
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  FirebaseAuth? _auth;
+  FirebaseAuth get _authInstance {
+    if (Firebase.apps.isEmpty) {
+      throw StateError(
+          'Firebase has not been initialized. Call Firebase.initializeApp() first.');
+    }
+    _auth ??= FirebaseAuth.instance;
+    return _auth!;
+  }
+
   final GoogleSignIn _googleSignIn = GoogleSignIn(
     scopes: ['email', 'profile'],
   );
   final FirestoreService _firestoreService = FirestoreService();
   final Logger _logger = Logger();
 
+  // Check if Firebase is available
+  bool get isFirebaseAvailable {
+    try {
+      return Firebase.apps.isNotEmpty;
+    } catch (e) {
+      return false;
+    }
+  }
+
   // Current user stream
-  Stream<User?> get authStateChanges => _auth.authStateChanges();
-  User? get currentUser => _auth.currentUser;
+  Stream<User?> get authStateChanges {
+    if (!isFirebaseAvailable) {
+      debugPrint(
+          'Firebase not available - authStateChanges returning empty stream');
+      return Stream.value(null);
+    }
+    return _authInstance.authStateChanges();
+  }
+
+  User? get currentUser {
+    if (!isFirebaseAvailable) return null;
+    return _authInstance.currentUser;
+  }
 
   // Email & Password Authentication
   Future<UserModel?> signInWithEmailAndPassword(
       String email, String password) async {
+    if (!isFirebaseAvailable) {
+      _logger.w('Firebase not available - signInWithEmailAndPassword skipped');
+      return null;
+    }
+
     try {
-      final credential = await _auth.signInWithEmailAndPassword(
+      final credential = await _authInstance.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -48,8 +84,14 @@ class AuthService {
   Future<UserModel?> createUserWithEmailAndPassword(
       String email, String password,
       {String? displayName}) async {
+    if (!isFirebaseAvailable) {
+      _logger
+          .w('Firebase not available - createUserWithEmailAndPassword skipped');
+      return null;
+    }
+
     try {
-      final credential = await _auth.createUserWithEmailAndPassword(
+      final credential = await _authInstance.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -80,6 +122,11 @@ class AuthService {
 
   // Google Sign In
   Future<UserModel?> signInWithGoogle() async {
+    if (!isFirebaseAvailable) {
+      _logger.w('Firebase not available - signInWithGoogle skipped');
+      return null;
+    }
+
     try {
       final googleUser = await _googleSignIn.signIn();
       if (googleUser == null) {
@@ -94,7 +141,8 @@ class AuthService {
         idToken: googleAuth.idToken,
       );
 
-      final userCredential = await _auth.signInWithCredential(credential);
+      final userCredential =
+          await _authInstance.signInWithCredential(credential);
 
       if (userCredential.user != null) {
         final userModel = await _createUserDocument(userCredential.user!);
@@ -110,9 +158,15 @@ class AuthService {
 
   // Apple Sign In (iOS/macOS)
   Future<UserModel?> signInWithApple() async {
+    if (!isFirebaseAvailable) {
+      _logger.w('Firebase not available - signInWithApple skipped');
+      return null;
+    }
+
     try {
       final appleProvider = AppleAuthProvider();
-      final userCredential = await _auth.signInWithProvider(appleProvider);
+      final userCredential =
+          await _authInstance.signInWithProvider(appleProvider);
 
       if (userCredential.user != null) {
         final userModel = await _createUserDocument(userCredential.user!);
@@ -128,8 +182,13 @@ class AuthService {
 
   // Password Reset
   Future<void> sendPasswordResetEmail(String email) async {
+    if (!isFirebaseAvailable) {
+      _logger.w('Firebase not available - sendPasswordResetEmail skipped');
+      return;
+    }
+
     try {
-      await _auth.sendPasswordResetEmail(email: email);
+      await _authInstance.sendPasswordResetEmail(email: email);
       _logger.i('Password reset email sent to: $email');
     } on FirebaseAuthException catch (e) {
       _logger.e('Password reset failed: ${e.message}');
@@ -139,8 +198,13 @@ class AuthService {
 
   // Email Verification
   Future<void> sendEmailVerification() async {
+    if (!isFirebaseAvailable) {
+      _logger.w('Firebase not available - sendEmailVerification skipped');
+      return;
+    }
+
     try {
-      final user = _auth.currentUser;
+      final user = _authInstance.currentUser;
       if (user != null && !user.emailVerified) {
         await user.sendEmailVerification();
         _logger.i('Email verification sent to: ${user.email}');
@@ -152,8 +216,10 @@ class AuthService {
   }
 
   Future<void> reloadUser() async {
+    if (!isFirebaseAvailable) return;
+
     try {
-      await _auth.currentUser?.reload();
+      await _authInstance.currentUser?.reload();
     } catch (e) {
       _logger.e('User reload failed: $e');
     }
@@ -161,9 +227,14 @@ class AuthService {
 
   // Sign Out
   Future<void> signOut() async {
+    if (!isFirebaseAvailable) {
+      _logger.w('Firebase not available - signOut skipped');
+      return;
+    }
+
     try {
       await _googleSignIn.signOut();
-      await _auth.signOut();
+      await _authInstance.signOut();
       _logger.i('User signed out successfully');
     } catch (e) {
       _logger.e('Sign out failed: $e');
@@ -173,8 +244,13 @@ class AuthService {
 
   // Delete Account
   Future<void> deleteAccount() async {
+    if (!isFirebaseAvailable) {
+      _logger.w('Firebase not available - deleteAccount skipped');
+      return;
+    }
+
     try {
-      final user = _auth.currentUser;
+      final user = _authInstance.currentUser;
       if (user != null) {
         await user.delete();
         _logger.i('User account deleted: ${user.uid}');
@@ -240,7 +316,18 @@ class AuthService {
   }
 
   // Utility Methods
-  bool get isSignedIn => _auth.currentUser != null;
-  String? get currentUserId => _auth.currentUser?.uid;
-  String? get currentUserEmail => _auth.currentUser?.email;
+  bool get isSignedIn {
+    if (!isFirebaseAvailable) return false;
+    return _authInstance.currentUser != null;
+  }
+
+  String? get currentUserId {
+    if (!isFirebaseAvailable) return null;
+    return _authInstance.currentUser?.uid;
+  }
+
+  String? get currentUserEmail {
+    if (!isFirebaseAvailable) return null;
+    return _authInstance.currentUser?.email;
+  }
 }

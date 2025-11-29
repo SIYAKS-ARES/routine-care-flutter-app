@@ -4,6 +4,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:timezone/timezone.dart' as tz;
 import '../models/notification_model.dart';
@@ -18,7 +19,15 @@ class EnhancedNotificationService {
 
   final FlutterLocalNotificationsPlugin _localNotifications =
       FlutterLocalNotificationsPlugin();
-  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
+  FirebaseMessaging? _firebaseMessaging;
+  
+  FirebaseMessaging? get _firebaseMessagingInstance {
+    if (Firebase.apps.isEmpty) {
+      return null;
+    }
+    _firebaseMessaging ??= FirebaseMessaging.instance;
+    return _firebaseMessaging;
+  }
 
   final StreamController<NotificationModel> _notificationStreamController =
       StreamController<NotificationModel>.broadcast();
@@ -76,31 +85,43 @@ class EnhancedNotificationService {
   }
 
   Future<void> _initializeFirebaseMessaging() async {
-    // Request permission for iOS
-    final settings = await _firebaseMessaging.requestPermission(
-      alert: true,
-      badge: true,
-      sound: true,
-    );
+    try {
+      // Check if Firebase is initialized
+      final messaging = _firebaseMessagingInstance;
+      if (messaging == null) {
+        debugPrint('Firebase not initialized - skipping Firebase Messaging setup');
+        return;
+      }
 
-    if (settings.authorizationStatus == AuthorizationStatus.authorized) {
-      debugPrint('User granted permission for notifications');
+      // Request permission for iOS
+      final settings = await messaging.requestPermission(
+        alert: true,
+        badge: true,
+        sound: true,
+      );
 
-      // Get FCM token
-      _fcmToken = await _firebaseMessaging.getToken();
-      debugPrint('FCM Token: $_fcmToken');
+      if (settings.authorizationStatus == AuthorizationStatus.authorized) {
+        debugPrint('User granted permission for notifications');
 
-      // Listen to token refresh
-      _firebaseMessaging.onTokenRefresh.listen((token) {
-        _fcmToken = token;
-        _updateFCMTokenInFirestore(token);
-      });
+        // Get FCM token
+        _fcmToken = await messaging.getToken();
+        debugPrint('FCM Token: $_fcmToken');
 
-      // Handle foreground messages
-      FirebaseMessaging.onMessage.listen(_handleForegroundMessage);
+        // Listen to token refresh
+        messaging.onTokenRefresh.listen((token) {
+          _fcmToken = token;
+          _updateFCMTokenInFirestore(token);
+        });
 
-      // Handle background messages
-      FirebaseMessaging.onMessageOpenedApp.listen(_handleBackgroundMessage);
+        // Handle foreground messages
+        FirebaseMessaging.onMessage.listen(_handleForegroundMessage);
+
+        // Handle background messages
+        FirebaseMessaging.onMessageOpenedApp.listen(_handleBackgroundMessage);
+      }
+    } catch (e) {
+      debugPrint('Failed to initialize Firebase Messaging: $e');
+      // Continue without Firebase Messaging - app will work with local notifications only
     }
   }
 
